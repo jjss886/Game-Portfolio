@@ -1,3 +1,1 @@
-Tetris with React !!
-
-Deployed: https://space-tetris-react.herokuapp.com/
+Tetris with React !
