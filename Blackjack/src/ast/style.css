@@ -56,6 +56,15 @@
   background-color: darkcyan;
 }
 
+.btnSetUpBreak {
+  width: 90%;
+  color: white;
+  margin: 0;
+  border-width: 1px;
+  border-style: solid;
+  margin-bottom: 15px;
+}
+
 /* -------------------- CARD ELEMENT -------------------- */
 .cardDiv {
   height: 70px;
@@ -76,7 +85,7 @@
 
 /* -------------------- PLAYER ELEMENT -------------------- */
 .playerDiv {
-  width: 150px;
+  width: 250px;
   background-color: darkkhaki;
   border-radius: 5px;
   display: flex;

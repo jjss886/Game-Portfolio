@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setNewDeck, addPlayer, setGame } from "../store";
 import Card from "./Card";
 import Player from "./Player";
 import ButtonSetUp from "./ButtonSetUp";
 
 class Table extends Component {
   render() {
-    const { deck, players, liveGame } = this.props;
-    console.log("render -", liveGame);
+    const { deck, players } = this.props;
 
     return (
       <div className="totalFullDiv">
@@ -39,17 +37,12 @@ class Table extends Component {
 const mapState = state => {
   return {
     deck: state.deck,
-    players: state.players,
-    liveGame: state.liveGame
+    players: state.players
   };
 };
 
 const mapDispatch = dispatch => {
-  return {
-    setNewDeck: () => dispatch(setNewDeck()),
-    addPlayer: () => dispatch(addPlayer()),
-    setGame: () => dispatch(setGame())
-  };
+  return {};
 };
 
 export default connect(mapState, mapDispatch)(Table);

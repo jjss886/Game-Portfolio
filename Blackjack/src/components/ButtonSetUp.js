@@ -15,7 +15,17 @@ class ButtonSetUp extends Component {
     this.props.setGame();
   };
 
+  hit = () => {
+    console.log("hitting");
+  };
+
+  stay = () => {
+    console.log("staying");
+  };
+
   render() {
+    const { liveGame } = this.props;
+
     return (
       <div className="btnSetUpDiv">
         <button
@@ -41,6 +51,27 @@ class ButtonSetUp extends Component {
         >
           Start Game
         </button>
+
+        {liveGame ? (
+          <>
+            <hr className="btnSetUpBreak" />
+            <button
+              type="button"
+              onClick={this.hit}
+              className="hitBtn setUpBtn"
+            >
+              Hit
+            </button>
+
+            <button
+              type="button"
+              onClick={this.stay}
+              className="stayBtn setUpBtn"
+            >
+              Stay
+            </button>
+          </>
+        ) : null}
       </div>
     );
   }
