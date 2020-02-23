@@ -16,7 +16,6 @@
 
 .cardSecDiv {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .playerSecDiv {
@@ -81,7 +80,8 @@
 
 /* -------------------- PLAYER ELEMENT -------------------- */
 .playerDiv {
-  width: 250px;
+  width: 275px;
+  min-height: 150px;
   background-color: darkkhaki;
   border-radius: 5px;
   display: flex;
@@ -93,5 +93,16 @@
   font-size: 16px;
   border-style: solid;
   border-color: black;
-  border-width: 2px;
+  border-width: 3px;
+}
+
+.livePlayertrue {
+  background-color: rgba(0, 191, 255, 0.7);
+}
+
+.playerHandDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  min-height: 105px;
 }
