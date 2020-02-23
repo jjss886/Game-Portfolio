@@ -23,13 +23,40 @@
   margin: 5px;
   padding: 10px;
   font-size: 25px;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
 }
 
 /* -------------------- BTN SET UP ELEMENT -------------------- */
-.newDeckBtn {
+.btnSetUpDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 5px;
+  background-color: cadetblue;
+  height: 50px;
+  width: 500px;
+  border-radius: 5px;
+}
+
+.setUpBtn {
   height: 35px;
-  width: 100px;
-  background-color: burlywood;
+  width: 125px;
   border-radius: 3px;
   font-size: 18px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.newDeckBtn {
+  background-color: burlywood;
+}
+
+.addPlayerBtn {
+  background-color: cornflowerblue;
+}
+
+.startGameBtn {
+  background-color: darkcyan;
 }
