@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setNewDeck, addPlayer } from "../store";
+import { setNewDeck, addPlayer, setGame } from "../store";
 import Card from "./Card";
 import Player from "./Player";
 
@@ -14,11 +14,13 @@ class Table extends Component {
   };
 
   startGame = () => {
-    console.log("GAME!");
+    this.props.setGame();
+    // console.log("GAME -", this.props.liveGame);
   };
 
   render() {
-    const { deck, players } = this.props;
+    const { deck, players, liveGame } = this.props;
+    console.log("render -", liveGame);
 
     return (
       <div className="totalFullDiv">
@@ -73,14 +75,16 @@ class Table extends Component {
 const mapState = state => {
   return {
     deck: state.deck,
-    players: state.players
+    players: state.players,
+    liveGame: state.liveGame
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     setNewDeck: () => dispatch(setNewDeck()),
-    addPlayer: () => dispatch(addPlayer())
+    addPlayer: () => dispatch(addPlayer()),
+    setGame: () => dispatch(setGame())
   };
 };
 

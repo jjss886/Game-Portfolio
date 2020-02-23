@@ -8,12 +8,15 @@ import { createDeck, shuffleDeck } from "../utils/utilities";
 const initialState = {
   deck: [],
   players: [],
-  livePlayer: {}
+  livePlayer: {},
+  liveGame: false
 };
 
 // ACTION TYPES
 const SET_DECK = "SET_DECK";
 const ADD_PLAYER = "ADD_PLAYER";
+const SET_PLAYER = "SET_PLAYER";
+const SET_GAME = "SET_GAME";
 
 // ACTION CREATORS
 const setDeck = deck => {
@@ -27,6 +30,12 @@ const setPlayer = player => {
   return {
     type: ADD_PLAYER,
     player
+  };
+};
+
+export const setGame = () => {
+  return {
+    type: SET_GAME
   };
 };
 
@@ -67,6 +76,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, deck: action.deck };
     case ADD_PLAYER:
       return { ...state, players: [...state.players, action.player] };
+    case SET_GAME:
+      return { ...state, liveGame: !state.liveGame };
     default:
       return state;
   }

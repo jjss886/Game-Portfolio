@@ -2,7 +2,6 @@
 .tableFullDiv {
   background-color: aquamarine;
   border-radius: 10px;
-  height: 50vh;
   width: 75vw;
   min-height: 350px;
   min-width: 500px;
@@ -17,6 +16,7 @@
 
 .playerSecDiv {
   display: flex;
+  flex-wrap: wrap;
 }
 
 /* -------------------- BTN SET UP ELEMENT -------------------- */
@@ -72,8 +72,7 @@
 
 /* -------------------- PLAYER ELEMENT -------------------- */
 .playerDiv {
-  height: 70px;
-  width: 50px;
+  width: 150px;
   background-color: darkkhaki;
   border-radius: 5px;
   display: flex;
