@@ -19,6 +19,7 @@ const SET_PLAYER = "SET_PLAYER";
 const SET_GAME = "SET_GAME";
 const RESET = "RESET";
 const HIT = "HIT";
+const STAY = "STAY";
 
 // ACTION CREATORS
 const setDeck = deck => {
@@ -52,6 +53,12 @@ const hitCreator = (deck, players) => {
     type: HIT,
     deck,
     players
+  };
+};
+
+export const stayCreator = () => {
+  return {
+    type: STAY
   };
 };
 
@@ -117,6 +124,8 @@ const reducer = (state = initialState, action) => {
         deck: action.deck,
         players: action.players
       };
+    case STAY:
+      return { ...state, livePlayer: state.livePlayer + 1 };
     case RESET:
       return initialState;
     default:

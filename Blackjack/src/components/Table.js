@@ -13,7 +13,7 @@ class Table extends Component {
   }
 
   render() {
-    const { deck, players } = this.props;
+    const { deck, players, livePlayer } = this.props;
     // console.log("render -", deck.length, players);
 
     return (
@@ -30,7 +30,7 @@ class Table extends Component {
           <div className="playerSecDiv">
             {players.length
               ? players.map((player, idx) => (
-                  <Player key={idx} player={player} />
+                  <Player key={idx} player={player} live={idx === livePlayer} />
                 ))
               : null}
           </div>
@@ -45,7 +45,8 @@ class Table extends Component {
 const mapState = state => {
   return {
     deck: state.deck,
-    players: state.players
+    players: state.players,
+    livePlayer: state.livePlayer
   };
 };
 

@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setNewDeck, addNewPlayer, setGame, reset, hitAction } from "../store";
+import {
+  setNewDeck,
+  addNewPlayer,
+  setGame,
+  reset,
+  hitAction,
+  stayCreator
+} from "../store";
 
 class ButtonSetUp extends Component {
   newDeck = () => {
@@ -12,6 +19,7 @@ class ButtonSetUp extends Component {
   };
 
   startGame = () => {
+    if (!this.props.players.length) return alert("Add Some Players!");
     this.props.setGame();
   };
 
@@ -25,7 +33,10 @@ class ButtonSetUp extends Component {
   };
 
   stay = () => {
+    const { livePlayer, players, stayCreator } = this.props;
     console.log("staying");
+    if (livePlayer === players.length - 1) return alert("DONE");
+    stayCreator();
   };
 
   render() {
@@ -106,7 +117,8 @@ const mapDispatch = dispatch => {
     addNewPlayer: () => dispatch(addNewPlayer()),
     setGame: () => dispatch(setGame()),
     reset: () => dispatch(reset()),
-    hitAction: (deck, idx, players) => dispatch(hitAction(deck, idx, players))
+    hitAction: (deck, idx, players) => dispatch(hitAction(deck, idx, players)),
+    stayCreator: () => dispatch(stayCreator())
   };
 };
 
