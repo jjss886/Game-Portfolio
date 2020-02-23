@@ -1,12 +1,14 @@
 import React from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 
 import "./ast/style.css";
 import Table from "./components/Table";
 
 render(
-  <div className="mainReactDiv">
+  <Provider store={store}>
     <Table />
-  </div>,
+  </Provider>,
   document.getElementById("app")
 );
