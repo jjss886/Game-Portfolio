@@ -48,7 +48,7 @@ export const reset = () => {
   };
 };
 
-const hitCreator = (deck, players) => {
+export const hitCreator = (deck, players) => {
   return {
     type: HIT,
     deck,

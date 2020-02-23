@@ -20,6 +20,10 @@ class Table extends Component {
       <div className="totalFullDiv">
         <div className="tableFullDiv">
           <div className="cardSecDiv">
+            <div className="cardDiv">
+              <strong>{deck.length}</strong>
+            </div>
+
             {deck.length
               ? deck
                   .slice(-5)

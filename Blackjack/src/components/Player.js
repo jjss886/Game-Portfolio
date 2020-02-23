@@ -3,11 +3,13 @@ import Card from "./Card";
 
 const Player = ({ player }) => (
   <div className="playerDiv">
-    <span>{player.Name}</span>
+    <strong>{player.Name}</strong>
     <span>Score: {player.Points}</span>
-    {player.Hand.length
-      ? player.Hand.map((card, idx) => <Card key={idx} card={card} />)
-      : null}
+    <div className="cardSecDiv">
+      {player.Hand.length
+        ? player.Hand.map((card, idx) => <Card key={idx} card={card} />)
+        : null}
+    </div>
   </div>
 );
 

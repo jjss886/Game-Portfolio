@@ -16,6 +16,7 @@
 
 .cardSecDiv {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .playerSecDiv {
