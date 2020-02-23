@@ -2,7 +2,11 @@ import React, { Component } from "react";
 
 class Table extends Component {
   render() {
-    return <div>Hi</div>;
+    return (
+      <div>
+        <div className="tableFullDiv">Hi</div>
+      </div>
+    );
   }
 }
 
