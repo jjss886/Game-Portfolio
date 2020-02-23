@@ -1,10 +1,8 @@
 const suits = ["Spades", "Hearts", "Diamonds", "Clubs"],
   values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-let deck = [],
-  players = [];
 
 export const createDeck = () => {
-  deck = new Array();
+  const deck = new Array();
   for (const val of values) {
     for (const suit of suits) {
       let weight = parseInt(val);
@@ -13,9 +11,10 @@ export const createDeck = () => {
       deck.push({ Value: val, Suit: suit, Weight: weight });
     }
   }
+  return deck;
 };
 
-export const shuffleDeck = () => {
+export const shuffleDeck = deck => {
   for (let i = 0; i < 1000; i++) {
     const one = Math.floor(Math.random() * deck.length),
       two = Math.floor(Math.random() * deck.length),
@@ -27,8 +26,9 @@ export const shuffleDeck = () => {
 };
 
 export const createPlayer = num => {
-  players = new Array();
+  const players = new Array();
   for (let i = 1; i <= num; i++) {
     players.push({ Name: `Player ${i}`, ID: i, Points: 0, Hand: new Array() });
   }
+  return players;
 };

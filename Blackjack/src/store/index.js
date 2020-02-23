@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
+import { createDeck } from "../utils/utilities";
 
 // INITIAL STATE
 const initialState = {
@@ -9,46 +10,21 @@ const initialState = {
 };
 
 // ACTION TYPES
-const SET_MODE = "SET_MODE";
-const SET_CHART_TYPE = "SET_CHART_TYPE";
-const SET_LIVE_KEY = "SET_LIVE_KEY";
-const SET_LIVE_DATA = "SET_LIVE_DATA";
+const SET_DECK = "SET_DECK";
 
 // ACTION CREATORS
-export const setMode = mode => {
+const setDeck = deck => {
   return {
-    type: SET_MODE,
-    mode
-  };
-};
-
-export const setChartType = chartType => {
-  return {
-    type: SET_CHART_TYPE,
-    chartType
-  };
-};
-
-export const setLiveKey = key => {
-  return {
-    type: SET_LIVE_KEY,
-    key
+    type: SET_DECK,
+    deck
   };
 };
 
 // THUNKY THUNKS
-export const getFullData = () => {
+export const setNewDeck = () => {
   return dispatch => {
     try {
-    } catch (error) {
-      console.error("WAH ERROR --", error);
-    }
-  };
-};
-
-export const addDataSet = newFullData => {
-  return dispatch => {
-    try {
+      dispatch(setDeck(createDeck()));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -58,10 +34,8 @@ export const addDataSet = newFullData => {
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MODE:
-      return { ...state, mode: action.mode };
-    case SET_CHART_TYPE:
-      return { ...state, chartType: action.chartType };
+    case SET_DECK:
+      return { ...state, deck: action.deck };
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Table extends Component {
   render() {
@@ -10,4 +11,14 @@ class Table extends Component {
   }
 }
 
-export default Table;
+const mapState = state => {
+  return {
+    deck: state.deck
+  };
+};
+
+const mapDispatch = dispatch => {
+  return {};
+};
+
+export default connect(mapState, mapDispatch)(Table);
