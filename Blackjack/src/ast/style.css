@@ -6,7 +6,6 @@
   width: 75vw;
   min-height: 350px;
   min-width: 500px;
-  margin: 10px;
   padding: 10px;
   display: flex;
 }
@@ -23,4 +22,14 @@
   align-items: center;
   margin: 5px;
   padding: 10px;
+  font-size: 25px;
+}
+
+/* -------------------- BTN SET UP ELEMENT -------------------- */
+.newDeckBtn {
+  height: 35px;
+  width: 100px;
+  background-color: burlywood;
+  border-radius: 3px;
+  font-size: 18px;
 }

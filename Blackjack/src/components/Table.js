@@ -20,8 +20,8 @@ class Table extends Component {
         </div>
 
         <div className="btnSetUpDiv">
-          <button type="button" onClick={this.newDeck}>
-            Start Game
+          <button type="button" onClick={this.newDeck} className="newDeckBtn">
+            New Deck
           </button>
         </div>
       </div>
