@@ -19,7 +19,7 @@ class ButtonSetUp extends Component {
   };
 
   startGame = () => {
-    if (!this.props.players.length) return alert("Add Some Players!");
+    if (!this.props.players.length) return alert("Add Some Players First!");
     this.props.setGame();
   };
 
@@ -29,13 +29,12 @@ class ButtonSetUp extends Component {
 
   hit = () => {
     const { deck, livePlayer, players, hitAction } = this.props;
-    hitAction(deck, livePlayer, players);
+    hitAction(deck.slice(), livePlayer, players.slice());
   };
 
   stay = () => {
     const { livePlayer, players, stayCreator } = this.props;
-    console.log("staying");
-    if (livePlayer === players.length - 1) return alert("DONE");
+    if (livePlayer === players.length - 1) return alert("HOUSE TIME");
     stayCreator();
   };
 

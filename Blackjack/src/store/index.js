@@ -78,14 +78,15 @@ export const setNewDeck = () => {
 export const addNewPlayer = () => {
   return dispatch => {
     try {
-      const idx = store.getState().players.length + 1,
-        playerObj = {
+      const idx = store.getState().players.length + 1;
+      dispatch(
+        addPlayer({
           Name: `Player ${idx}`,
           ID: idx,
           Points: 0,
           Hand: new Array()
-        };
-      dispatch(addPlayer(playerObj));
+        })
+      );
     } catch (error) {
       console.error("WAH ERROR --", error);
     }

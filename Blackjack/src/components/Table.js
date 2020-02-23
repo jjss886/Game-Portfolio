@@ -5,12 +5,12 @@ import Player from "./Player";
 import ButtonSetUp from "./ButtonSetUp";
 
 class Table extends Component {
-  componentDidUpdate(prevProps) {
-    console.log("update", this.props.deck.length, prevProps.deck.length);
-    if (this.props.deck.length !== prevProps.deck.length) {
-      console.log("deck");
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   // console.log("update", this.props.deck.length, prevProps.deck.length);
+  //   if (this.props.deck.length !== prevProps.deck.length) {
+  //     console.log("deck");
+  //   }
+  // }
 
   render() {
     const { deck, players, livePlayer } = this.props;
