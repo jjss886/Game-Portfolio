@@ -32,3 +32,12 @@ export const createPlayer = num => {
   }
   return players;
 };
+
+export const win = players => {
+  const best = [0, 0];
+  players.forEach((player, idx) => {
+    if (player.Points > best[0] && player.Points < 22)
+      best = [player.Points, idx];
+  });
+  return best[1];
+};

@@ -8,7 +8,7 @@ import { createDeck, shuffleDeck } from "../utils/utilities";
 const initialState = {
   deck: [],
   players: [],
-  livePlayer: {},
+  livePlayer: -1,
   liveGame: false
 };
 
@@ -17,6 +17,8 @@ const SET_DECK = "SET_DECK";
 const ADD_PLAYER = "ADD_PLAYER";
 const SET_PLAYER = "SET_PLAYER";
 const SET_GAME = "SET_GAME";
+const RESET = "RESET";
+const HIT = "HIT";
 
 // ACTION CREATORS
 const setDeck = deck => {
@@ -26,7 +28,7 @@ const setDeck = deck => {
   };
 };
 
-const setPlayer = player => {
+const addPlayer = player => {
   return {
     type: ADD_PLAYER,
     player
@@ -36,6 +38,20 @@ const setPlayer = player => {
 export const setGame = () => {
   return {
     type: SET_GAME
+  };
+};
+
+export const reset = () => {
+  return {
+    type: RESET
+  };
+};
+
+const hitCreator = (deck, players) => {
+  return {
+    type: HIT,
+    deck,
+    players
   };
 };
 
@@ -52,7 +68,7 @@ export const setNewDeck = () => {
   };
 };
 
-export const addPlayer = () => {
+export const addNewPlayer = () => {
   return dispatch => {
     try {
       const idx = store.getState().players.length + 1,
@@ -62,7 +78,20 @@ export const addPlayer = () => {
           Points: 0,
           Hand: new Array()
         };
-      dispatch(setPlayer(playerObj));
+      dispatch(addPlayer(playerObj));
+    } catch (error) {
+      console.error("WAH ERROR --", error);
+    }
+  };
+};
+
+export const hitAction = (deck, idx, players) => {
+  return dispatch => {
+    try {
+      const card = deck.pop();
+      players[idx].Hand.push(card);
+      players[idx].Points += card.Weight;
+      dispatch(hitCreator(deck, players));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -77,7 +106,19 @@ const reducer = (state = initialState, action) => {
     case ADD_PLAYER:
       return { ...state, players: [...state.players, action.player] };
     case SET_GAME:
-      return { ...state, liveGame: !state.liveGame };
+      return {
+        ...state,
+        liveGame: !state.liveGame,
+        livePlayer: 0
+      };
+    case HIT:
+      return {
+        ...state,
+        deck: action.deck,
+        players: action.players
+      };
+    case RESET:
+      return initialState;
     default:
       return state;
   }

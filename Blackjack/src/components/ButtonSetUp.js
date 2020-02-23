@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setNewDeck, addPlayer, setGame } from "../store";
+import { setNewDeck, addNewPlayer, setGame, reset, hitAction } from "../store";
 
 class ButtonSetUp extends Component {
   newDeck = () => {
@@ -8,15 +8,20 @@ class ButtonSetUp extends Component {
   };
 
   newPlayer = () => {
-    this.props.addPlayer();
+    this.props.addNewPlayer();
   };
 
   startGame = () => {
     this.props.setGame();
   };
 
+  newGame = () => {
+    this.props.reset();
+  };
+
   hit = () => {
-    console.log("hitting");
+    const { deck, livePlayer, players, hitAction } = this.props;
+    hitAction(deck, livePlayer, players);
   };
 
   stay = () => {
@@ -28,33 +33,34 @@ class ButtonSetUp extends Component {
 
     return (
       <div className="btnSetUpDiv">
-        <button
-          type="button"
-          onClick={this.newDeck}
-          className="newDeckBtn setUpBtn"
-        >
-          New Deck
-        </button>
-
-        <button
-          type="button"
-          onClick={this.newPlayer}
-          className="addPlayerBtn setUpBtn"
-        >
-          Add Player
-        </button>
-
-        <button
-          type="button"
-          onClick={this.startGame}
-          className="startGameBtn setUpBtn"
-        >
-          Start Game
-        </button>
-
-        {liveGame ? (
+        {!liveGame ? (
           <>
-            <hr className="btnSetUpBreak" />
+            <button
+              type="button"
+              onClick={this.newDeck}
+              className="newDeckBtn setUpBtn"
+            >
+              New Deck
+            </button>
+
+            <button
+              type="button"
+              onClick={this.newPlayer}
+              className="addPlayerBtn setUpBtn"
+            >
+              Add Player
+            </button>
+
+            <button
+              type="button"
+              onClick={this.startGame}
+              className="startGameBtn setUpBtn"
+            >
+              Start Game
+            </button>
+          </>
+        ) : (
+          <>
             <button
               type="button"
               onClick={this.hit}
@@ -70,8 +76,16 @@ class ButtonSetUp extends Component {
             >
               Stay
             </button>
+
+            <button
+              type="button"
+              onClick={this.newGame}
+              className="resetBtn setUpBtn"
+            >
+              New Game
+            </button>
           </>
-        ) : null}
+        )}
       </div>
     );
   }
@@ -81,15 +95,18 @@ const mapState = state => {
   return {
     deck: state.deck,
     players: state.players,
-    liveGame: state.liveGame
+    liveGame: state.liveGame,
+    livePlayer: state.livePlayer
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     setNewDeck: () => dispatch(setNewDeck()),
-    addPlayer: () => dispatch(addPlayer()),
-    setGame: () => dispatch(setGame())
+    addNewPlayer: () => dispatch(addNewPlayer()),
+    setGame: () => dispatch(setGame()),
+    reset: () => dispatch(reset()),
+    hitAction: (deck, idx, players) => dispatch(hitAction(deck, idx, players))
   };
 };
 

@@ -56,13 +56,8 @@
   background-color: darkcyan;
 }
 
-.btnSetUpBreak {
-  width: 90%;
-  color: white;
-  margin: 0;
-  border-width: 1px;
-  border-style: solid;
-  margin-bottom: 15px;
+.resetBtn {
+  background-color: darksalmon;
 }
 
 /* -------------------- CARD ELEMENT -------------------- */
