@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { createDeck } from "../utils/utilities";
+import { createDeck, shuffleDeck } from "../utils/utilities";
 
 // INITIAL STATE
 const initialState = {
@@ -25,7 +25,9 @@ const setDeck = deck => {
 export const setNewDeck = () => {
   return dispatch => {
     try {
-      dispatch(setDeck(createDeck()));
+      const deck = createDeck();
+      shuffleDeck(deck);
+      dispatch(setDeck(deck));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
