@@ -23,13 +23,21 @@ class Table extends Component {
     return (
       <div className="totalFullDiv">
         <div className="tableFullDiv">
-          {deck.length
-            ? deck.slice(-5).map((card, idx) => <Card key={idx} card={card} />)
-            : null}
+          <div className="cardSecDiv">
+            {deck.length
+              ? deck
+                  .slice(-5)
+                  .map((card, idx) => <Card key={idx} card={card} />)
+              : null}
+          </div>
 
-          {players.length
-            ? players.map((player, idx) => <Player key={idx} player={player} />)
-            : null}
+          <div className="playerSecDiv">
+            {players.length
+              ? players.map((player, idx) => (
+                  <Player key={idx} player={player} />
+                ))
+              : null}
+          </div>
         </div>
 
         <div className="btnSetUpDiv">

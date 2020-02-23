@@ -7,7 +7,8 @@ import { createDeck, shuffleDeck } from "../utils/utilities";
 // INITIAL STATE
 const initialState = {
   deck: [],
-  players: []
+  players: [],
+  livePlayer: {}
 };
 
 // ACTION TYPES

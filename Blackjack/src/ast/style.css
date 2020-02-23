@@ -8,24 +8,15 @@
   min-width: 500px;
   padding: 10px;
   display: flex;
+  flex-direction: column;
 }
 
-/* -------------------- CARD ELEMENT -------------------- */
-.cardDiv {
-  height: 70px;
-  width: 50px;
-  background-color: azure;
-  border-radius: 3px;
+.cardSecDiv {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 5px;
-  padding: 10px;
-  font-size: 25px;
-  border-style: solid;
-  border-color: black;
-  border-width: 3px;
+}
+
+.playerSecDiv {
+  display: flex;
 }
 
 /* -------------------- BTN SET UP ELEMENT -------------------- */
@@ -59,4 +50,40 @@
 
 .startGameBtn {
   background-color: darkcyan;
+}
+
+/* -------------------- CARD ELEMENT -------------------- */
+.cardDiv {
+  height: 70px;
+  width: 50px;
+  background-color: azure;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  font-size: 25px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+/* -------------------- PLAYER ELEMENT -------------------- */
+.playerDiv {
+  height: 70px;
+  width: 50px;
+  background-color: darkkhaki;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
 }
