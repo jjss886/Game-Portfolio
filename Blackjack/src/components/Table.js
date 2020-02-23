@@ -3,21 +3,9 @@ import { connect } from "react-redux";
 import { setNewDeck, addPlayer, setGame } from "../store";
 import Card from "./Card";
 import Player from "./Player";
+import ButtonSetUp from "./ButtonSetUp";
 
 class Table extends Component {
-  newDeck = () => {
-    this.props.setNewDeck();
-  };
-
-  newPlayer = () => {
-    this.props.addPlayer();
-  };
-
-  startGame = () => {
-    this.props.setGame();
-    // console.log("GAME -", this.props.liveGame);
-  };
-
   render() {
     const { deck, players, liveGame } = this.props;
     console.log("render -", liveGame);
@@ -42,31 +30,7 @@ class Table extends Component {
           </div>
         </div>
 
-        <div className="btnSetUpDiv">
-          <button
-            type="button"
-            onClick={this.newDeck}
-            className="newDeckBtn setUpBtn"
-          >
-            New Deck
-          </button>
-
-          <button
-            type="button"
-            onClick={this.newPlayer}
-            className="addPlayerBtn setUpBtn"
-          >
-            Add Player
-          </button>
-
-          <button
-            type="button"
-            onClick={this.startGame}
-            className="startGameBtn setUpBtn"
-          >
-            Start Game
-          </button>
-        </div>
+        <ButtonSetUp />
       </div>
     );
   }
