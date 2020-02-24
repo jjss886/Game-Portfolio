@@ -98,7 +98,7 @@ class ButtonSetUp extends Component {
               onClick={this.setNewGame}
               className="newGameBtn setUpBtn"
             >
-              New Game
+              New Round
             </button>
 
             <button

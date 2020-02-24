@@ -89,6 +89,7 @@ export const newGame = players => {
           Name: `Player ${idx + 1}`,
           ID: idx + 1,
           Points: 0,
+          Cash: val.Cash,
           Hand: new Array()
         });
         return acm;
@@ -109,6 +110,7 @@ export const addNewPlayer = () => {
           Name: `Player ${idx}`,
           ID: idx,
           Points: 0,
+          Cash: 100,
           Hand: new Array()
         })
       );

@@ -3,17 +3,28 @@ h2 {
   margin: 0;
 }
 
-/* -------------------- TABLE ELEMENT -------------------- */
+/* -------------------- APP ELEMENT -------------------- */
 .appFullDiv {
+  background-color: bisque;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  min-width: 550px;
+}
+
+.appRow {
   display: flex;
 }
 
+/* -------------------- TABLE ELEMENT -------------------- */
 .tableFullDiv {
   background-color: aquamarine;
   border-radius: 10px;
-  width: 75vw;
+  width: 65vw;
   min-height: 350px;
-  min-width: 500px;
+  min-width: 450px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -92,7 +103,7 @@ h2 {
 .playerDiv {
   width: 275px;
   min-height: 150px;
-  background-color: darkkhaki;
+  background-color: lightgray;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -136,4 +147,17 @@ h2 {
   font-size: 35px;
   font-weight: bold;
   color: orangered;
+}
+
+/* -------------------- TRACKER ELEMENT -------------------- */
+.trackerFullDiv {
+  background-color: chartreuse;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.trackPlayer {
+  font-size: 18px;
 }
