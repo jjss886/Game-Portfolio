@@ -5,7 +5,7 @@ import Player from "./Player";
 
 class Table extends Component {
   render() {
-    const { deck, players, livePlayer } = this.props;
+    const { deck, players, livePlayer, liveGame } = this.props;
 
     return (
       <div className="tableFullDiv">
@@ -35,7 +35,8 @@ const mapState = state => {
   return {
     deck: state.deck,
     players: state.players,
-    livePlayer: state.livePlayer
+    livePlayer: state.livePlayer,
+    liveGame: state.liveGame
   };
 };
 
