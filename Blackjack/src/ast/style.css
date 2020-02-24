@@ -171,3 +171,11 @@ h2 {
 .trackPlayer {
   font-size: 18px;
 }
+
+/* -------------------- HOUSE ELEMENT -------------------- */
+.houseFullDiv {
+  display: flex;
+  background-color: lightslategray;
+  border-radius: 5px;
+  margin-left: 15px;
+}

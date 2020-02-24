@@ -4,18 +4,20 @@ import Card from "./Card";
 
 class House extends Component {
   render() {
+    const { deck, house } = this.props;
+
     return (
-      <div>
-        <div>House</div>
-        <Card />
-        <Card />
+      <div className="houseFullDiv">
+        {house.map((card, idx) => (
+          <Card key={idx} card={card} />
+        ))}
       </div>
     );
   }
 }
 
 const mapState = state => {
-  return { house: state.house };
+  return { deck: state.deck, house: state.house };
 };
 
 const mapDispatch = dispatch => {

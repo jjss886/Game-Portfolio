@@ -17,7 +17,7 @@ const initialState = {
 const SET_DECK = "SET_DECK";
 const ADD_PLAYER = "ADD_PLAYER";
 const SET_GAME = "SET_GAME";
-const NEW_GAME = "NEW_GAME";
+const NEW_ROUND = "NEW_ROUND";
 const RESET = "RESET";
 const HIT = "HIT";
 const STAY = "STAY";
@@ -37,9 +37,11 @@ const addPlayer = player => {
   };
 };
 
-export const setGame = () => {
+const startGame = (deck, house) => {
   return {
-    type: SET_GAME
+    type: SET_GAME,
+    deck,
+    house
   };
 };
 
@@ -64,10 +66,12 @@ export const stayCreator = () => {
   };
 };
 
-export const newGameCreator = players => {
+export const newRoundCreator = (players, deck, house) => {
   return {
-    type: NEW_GAME,
-    players
+    type: NEW_ROUND,
+    players,
+    deck,
+    house
   };
 };
 
@@ -82,20 +86,38 @@ export const setNewDeck = () => {
   };
 };
 
-export const newGame = players => {
+export const startNewGame = () => {
+  return dispatch => {
+    try {
+      const deck = createDeck(),
+        cardOne = deck.pop(),
+        cardTwo = deck.pop(),
+        house = [cardOne, cardTwo];
+      dispatch(startGame(deck, house));
+    } catch (error) {
+      console.error("WAH ERROR --", error);
+    }
+  };
+};
+
+export const newRound = players => {
   return dispatch => {
     try {
       const resetPlayers = players.reduce((acm, val, idx) => {
-        acm.push({
-          Name: `Player ${idx + 1}`,
-          ID: idx + 1,
-          Points: 0,
-          Cash: val.Cash,
-          Hand: new Array()
-        });
-        return acm;
-      }, []);
-      dispatch(newGameCreator(resetPlayers));
+          acm.push({
+            Name: `Player ${idx + 1}`,
+            ID: idx + 1,
+            Points: 0,
+            Cash: val.Cash,
+            Hand: new Array()
+          });
+          return acm;
+        }, []),
+        deck = createDeck(),
+        cardOne = deck.pop(),
+        cardTwo = deck.pop(),
+        house = [cardOne, cardTwo];
+      dispatch(newRoundCreator(resetPlayers, deck, house));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -144,6 +166,8 @@ const reducer = (state = initialState, action) => {
     case SET_GAME:
       return {
         ...state,
+        deck: action.deck,
+        house: action.house,
         liveGame: !state.liveGame,
         livePlayer: 0
       };
@@ -156,10 +180,11 @@ const reducer = (state = initialState, action) => {
       };
     case STAY:
       return { ...state, livePlayer: state.livePlayer + 1 };
-    case NEW_GAME:
+    case NEW_ROUND:
       return {
         ...state,
-        deck: createDeck(),
+        deck: action.deck,
+        house: action.house,
         players: action.players,
         livePlayer: 0
       };
