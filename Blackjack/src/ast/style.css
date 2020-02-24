@@ -126,5 +126,14 @@ h2 {
   left: 0;
   background-color: rgba(180, 180, 180, 0.7);
   border-radius: 5px;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bustedText {
+  transform: rotate(45deg);
+  font-size: 35px;
+  font-weight: bold;
+  color: orangered;
 }

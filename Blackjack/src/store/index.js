@@ -53,7 +53,7 @@ export const hitCreator = (deck, players, points) => {
     type: HIT,
     deck,
     players,
-    livePlayer: points > 21 ? 1 : 0
+    livePlayer: points >= 21 ? 1 : 0
   };
 };
 

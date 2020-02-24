@@ -6,7 +6,7 @@ const Player = ({ player, live }) => {
     <div className={`playerDiv livePlayer${live}`}>
       {player.Points > 21 ? (
         <div className="bustedDiv">
-          <span>BUSTED !</span>
+          <span className="bustedText">BUSTED !</span>
         </div>
       ) : null}
 
