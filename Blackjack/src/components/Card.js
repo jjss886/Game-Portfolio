@@ -1,14 +1,14 @@
 import React from "react";
 
 const suitSymbols = {
-  Spades: [9824, "&spades;"],
-  Hearts: [9829, "&hearts;"],
-  Diamonds: [9830, "&diams;"],
-  Clubs: [9827, "&clubs;"]
+  Spades: [9824, "&spades;", "Black"],
+  Clubs: [9827, "&clubs;", "Black"],
+  Hearts: [9829, "&hearts;", "Red"],
+  Diamonds: [9830, "&diams;", "Red"]
 };
 
 const Card = ({ card }) => (
-  <div className="cardDiv">
+  <div className={`cardDiv cardColor${suitSymbols[card.Suit][2]}`}>
     <span>{card.Value}</span>
     <span>{String.fromCharCode(suitSymbols[card.Suit][0])}</span>
   </div>

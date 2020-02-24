@@ -15,7 +15,7 @@ export const createDeck = () => {
   return deck;
 };
 
-export const shuffleDeck = deck => {
+const shuffleDeck = deck => {
   for (let i = 0; i < 1000; i++) {
     const one = Math.floor(Math.random() * deck.length),
       two = Math.floor(Math.random() * deck.length),
