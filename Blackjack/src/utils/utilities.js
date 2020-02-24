@@ -42,3 +42,5 @@ export const win = players => {
   });
   return best[1];
 };
+
+export const houseRules = () => {};
