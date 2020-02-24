@@ -48,11 +48,12 @@ export const reset = () => {
   };
 };
 
-export const hitCreator = (deck, players) => {
+export const hitCreator = (deck, players, points) => {
   return {
     type: HIT,
     deck,
-    players
+    players,
+    livePlayer: points > 21 ? 1 : 0
   };
 };
 
@@ -123,7 +124,7 @@ export const hitAction = (deck, idx, players) => {
       const card = deck.pop();
       players[idx].Hand.push(card);
       players[idx].Points += card.Weight;
-      dispatch(hitCreator(deck, players));
+      dispatch(hitCreator(deck, players, players[idx].Points));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -147,7 +148,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         deck: action.deck,
-        players: action.players
+        players: action.players,
+        livePlayer: state.livePlayer + action.livePlayer
       };
     case STAY:
       return { ...state, livePlayer: state.livePlayer + 1 };

@@ -1,18 +1,26 @@
 import React from "react";
 import Card from "./Card";
 
-const Player = ({ player, live }) => (
-  <div className={`playerDiv livePlayer${live}`}>
-    <h2>{player.Name}</h2>
+const Player = ({ player, live }) => {
+  return (
+    <div className={`playerDiv livePlayer${live}`}>
+      {player.Points > 21 ? (
+        <div className="bustedDiv">
+          <span>BUSTED !</span>
+        </div>
+      ) : null}
 
-    <span>Hand Total: {player.Points}</span>
+      <h2>{player.Name}</h2>
 
-    <div className="playerHandDiv">
-      {player.Hand.length
-        ? player.Hand.map((card, idx) => <Card key={idx} card={card} />)
-        : null}
+      <span>Hand Total: {player.Points}</span>
+
+      <div className="playerHandDiv">
+        {player.Hand.length
+          ? player.Hand.map((card, idx) => <Card key={idx} card={card} />)
+          : null}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Player;

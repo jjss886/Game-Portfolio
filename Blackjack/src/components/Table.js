@@ -7,6 +7,7 @@ import ButtonSetUp from "./ButtonSetUp";
 class Table extends Component {
   render() {
     const { deck, players, livePlayer } = this.props;
+    console.log("render -", players[livePlayer]);
 
     return (
       <div className="totalFullDiv">
