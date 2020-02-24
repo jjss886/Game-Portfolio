@@ -7,6 +7,7 @@ import { createDeck } from "../utils/utilities";
 // INITIAL STATE
 const initialState = {
   deck: [],
+  house: [],
   players: [],
   livePlayer: -1,
   liveGame: false

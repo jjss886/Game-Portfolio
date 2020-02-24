@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Card from "./Card";
 import Player from "./Player";
+import House from "./House";
 
 class Table extends Component {
   render() {
@@ -17,6 +18,8 @@ class Table extends Component {
           {deck.length
             ? deck.slice(-5).map((card, idx) => <Card key={idx} card={card} />)
             : null}
+
+          {liveGame ? <House /> : null}
         </div>
 
         <div className="playerSecDiv">
