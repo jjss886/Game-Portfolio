@@ -4,11 +4,11 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import "./ast/style.css";
-import Table from "./components/Table";
+import App from "./components/App";
 
 render(
   <Provider store={store}>
-    <Table />
+    <App />
   </Provider>,
   document.getElementById("app")
 );
