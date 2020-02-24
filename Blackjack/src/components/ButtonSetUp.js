@@ -34,8 +34,13 @@ class ButtonSetUp extends Component {
   };
 
   hit = () => {
-    const { deck, livePlayer, players, hitAction } = this.props;
-    hitAction(deck.slice(), livePlayer, players.slice());
+    const { deck, livePlayer, players, hitAction } = this.props,
+      nextCard = deck.slice(-1)[0],
+      newScore = players[livePlayer].Points + nextCard.Weight,
+      nextPlayer = newScore > 21 && livePlayer < players.length - 1 ? 1 : 0;
+    hitAction(deck.slice(), livePlayer, players.slice(), nextPlayer);
+    if (livePlayer === players.length - 1 && newScore > 21)
+      return alert("HOUSE TIME");
   };
 
   stay = () => {
@@ -130,7 +135,8 @@ const mapDispatch = dispatch => {
     addNewPlayer: () => dispatch(addNewPlayer()),
     startNewGame: () => dispatch(startNewGame()),
     reset: () => dispatch(reset()),
-    hitAction: (deck, idx, players) => dispatch(hitAction(deck, idx, players)),
+    hitAction: (deck, idx, players, nextPlayer) =>
+      dispatch(hitAction(deck, idx, players, nextPlayer)),
     stayCreator: () => dispatch(stayCreator()),
     newRound: players => dispatch(newRound(players))
   };

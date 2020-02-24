@@ -51,12 +51,12 @@ export const reset = () => {
   };
 };
 
-export const hitCreator = (deck, players, points) => {
+export const hitCreator = (deck, players, points, livePlayer) => {
   return {
     type: HIT,
     deck,
     players,
-    livePlayer: points >= 21 ? 1 : 0
+    livePlayer
   };
 };
 
@@ -143,13 +143,26 @@ export const addNewPlayer = () => {
   };
 };
 
-export const hitAction = (deck, idx, players) => {
+export const hitAction = (deck, idx, players, nextPlayer) => {
   return dispatch => {
     try {
-      const card = deck.pop();
+      const card = deck.pop(),
+        newPoints = players[idx].Points + card.Weight;
+
       players[idx].Hand.push(card);
-      players[idx].Points += card.Weight;
-      dispatch(hitCreator(deck, players, players[idx].Points));
+      players[idx].Points = newPoints;
+      if (newPoints > 21) players[idx].Cash -= 10;
+
+      dispatch(hitCreator(deck, players, newPoints, nextPlayer));
+    } catch (error) {
+      console.error("WAH ERROR --", error);
+    }
+  };
+};
+
+export const houseCardDraw = () => {
+  return dispatch => {
+    try {
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
