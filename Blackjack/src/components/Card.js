@@ -13,11 +13,12 @@ const Card = ({ card, cover }) => (
       <div className="cardCoverDiv">
         <span className="coveredText">Covered!</span>
       </div>
-    ) : null}
-
-    <span>{card.Value}</span>
-
-    <span>{String.fromCharCode(suitSymbols[card.Suit][0])}</span>
+    ) : (
+      <>
+        <span>{card.Value}</span>
+        <span>{String.fromCharCode(suitSymbols[card.Suit][0])}</span>
+      </>
+    )}
   </div>
 );
 
