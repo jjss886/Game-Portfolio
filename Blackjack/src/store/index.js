@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { createDeck, shuffleDeck } from "../utils/utilities";
+import { createDeck } from "../utils/utilities";
 
 // INITIAL STATE
 const initialState = {
@@ -15,8 +15,8 @@ const initialState = {
 // ACTION TYPES
 const SET_DECK = "SET_DECK";
 const ADD_PLAYER = "ADD_PLAYER";
-const SET_PLAYER = "SET_PLAYER";
 const SET_GAME = "SET_GAME";
+const NEW_GAME = "NEW_GAME";
 const RESET = "RESET";
 const HIT = "HIT";
 const STAY = "STAY";
@@ -62,13 +62,37 @@ export const stayCreator = () => {
   };
 };
 
+export const newGameCreator = players => {
+  return {
+    type: NEW_GAME,
+    players
+  };
+};
+
 // THUNKY THUNKS
 export const setNewDeck = () => {
   return dispatch => {
     try {
-      const deck = createDeck();
-      shuffleDeck(deck);
-      dispatch(setDeck(deck));
+      dispatch(setDeck(createDeck()));
+    } catch (error) {
+      console.error("WAH ERROR --", error);
+    }
+  };
+};
+
+export const newGame = players => {
+  return dispatch => {
+    try {
+      const resetPlayers = players.reduce((acm, val, idx) => {
+        acm.push({
+          Name: `Player ${idx + 1}`,
+          ID: idx + 1,
+          Points: 0,
+          Hand: new Array()
+        });
+        return acm;
+      }, []);
+      dispatch(newGameCreator(resetPlayers));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -127,6 +151,13 @@ const reducer = (state = initialState, action) => {
       };
     case STAY:
       return { ...state, livePlayer: state.livePlayer + 1 };
+    case NEW_GAME:
+      return {
+        ...state,
+        deck: createDeck(),
+        players: action.players,
+        livePlayer: 0
+      };
     case RESET:
       return initialState;
     default:

@@ -1,3 +1,8 @@
+/* -------------------- GLOBAL ELEMENT -------------------- */
+h2 {
+  margin: 0;
+}
+
 /* -------------------- TABLE ELEMENT -------------------- */
 .totalFullDiv {
   display: flex;
@@ -86,7 +91,6 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
   margin: 5px;
   padding: 10px;

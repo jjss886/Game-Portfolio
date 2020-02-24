@@ -11,6 +11,7 @@ export const createDeck = () => {
       deck.push({ Value: val, Suit: suit, Weight: weight });
     }
   }
+  shuffleDeck(deck);
   return deck;
 };
 

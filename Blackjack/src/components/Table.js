@@ -12,7 +12,7 @@ class Table extends Component {
       <div className="totalFullDiv">
         <div className="tableFullDiv">
           <div className="cardSecDiv">
-            <div className="cardDiv">
+            <div className="cardDiv" style={{ backgroundColor: "gold" }}>
               <strong>{deck.length}</strong>
             </div>
 

@@ -6,7 +6,8 @@ import {
   setGame,
   reset,
   hitAction,
-  stayCreator
+  stayCreator,
+  newGame
 } from "../store";
 
 class ButtonSetUp extends Component {
@@ -23,7 +24,12 @@ class ButtonSetUp extends Component {
     this.props.setGame();
   };
 
-  newGame = () => {
+  setNewGame = () => {
+    const { players, newGame } = this.props;
+    newGame(players);
+  };
+
+  resetGame = () => {
     this.props.reset();
   };
 
@@ -89,10 +95,18 @@ class ButtonSetUp extends Component {
 
             <button
               type="button"
-              onClick={this.newGame}
-              className="resetBtn setUpBtn"
+              onClick={this.setNewGame}
+              className="newGameBtn setUpBtn"
             >
               New Game
+            </button>
+
+            <button
+              type="button"
+              onClick={this.resetGame}
+              className="resetBtn setUpBtn"
+            >
+              Full Reset
             </button>
           </>
         )}
@@ -117,7 +131,8 @@ const mapDispatch = dispatch => {
     setGame: () => dispatch(setGame()),
     reset: () => dispatch(reset()),
     hitAction: (deck, idx, players) => dispatch(hitAction(deck, idx, players)),
-    stayCreator: () => dispatch(stayCreator())
+    stayCreator: () => dispatch(stayCreator()),
+    newGame: players => dispatch(newGame(players))
   };
 };
 
