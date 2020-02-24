@@ -7,9 +7,16 @@ const suitSymbols = {
   Diamonds: [9830, "&diams;", "Red"]
 };
 
-const Card = ({ card }) => (
+const Card = ({ card, cover }) => (
   <div className={`cardDiv cardColor${suitSymbols[card.Suit][2]}`}>
+    {cover ? (
+      <div className="cardCoverDiv">
+        <span className="coveredText">Covered!</span>
+      </div>
+    ) : null}
+
     <span>{card.Value}</span>
+
     <span>{String.fromCharCode(suitSymbols[card.Suit][0])}</span>
   </div>
 );

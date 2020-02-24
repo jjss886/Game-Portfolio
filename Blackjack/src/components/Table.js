@@ -16,7 +16,11 @@ class Table extends Component {
           </div>
 
           {deck.length
-            ? deck.slice(-5).map((card, idx) => <Card key={idx} card={card} />)
+            ? deck
+                .slice(-5)
+                .map((card, idx) => (
+                  <Card key={idx} card={card} cover={false} />
+                ))
             : null}
 
           {liveGame ? <House /> : null}

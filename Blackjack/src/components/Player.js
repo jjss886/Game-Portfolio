@@ -16,7 +16,9 @@ const Player = ({ player, live }) => {
 
       <div className="playerHandDiv">
         {player.Hand.length
-          ? player.Hand.map((card, idx) => <Card key={idx} card={card} />)
+          ? player.Hand.map((card, idx) => (
+              <Card key={idx} card={card} cover={false} />
+            ))
           : null}
       </div>
     </div>

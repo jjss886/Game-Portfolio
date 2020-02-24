@@ -9,7 +9,7 @@ class House extends Component {
     return (
       <div className="houseFullDiv">
         {house.map((card, idx) => (
-          <Card key={idx} card={card} />
+          <Card key={idx} card={card} cover={idx === 0} />
         ))}
       </div>
     );
