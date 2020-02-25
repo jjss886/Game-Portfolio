@@ -123,7 +123,7 @@ class ButtonSetUp extends Component {
             <button
               type="button"
               onClick={this.setNewRound}
-              className="newGameBtn setUpBtn"
+              className="newRoundBtn setUpBtn"
             >
               New Round
             </button>
