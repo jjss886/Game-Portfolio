@@ -7,7 +7,7 @@ class EndMessage extends Component {
 
     return houseDone ? (
       <div className="endMsgFullDiv">
-        <div>Message</div>
+        <div className="endMsgInside">Message</div>
       </div>
     ) : null;
   }

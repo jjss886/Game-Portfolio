@@ -12,6 +12,7 @@ h2 {
   flex-direction: column;
   width: 80vw;
   min-width: 550px;
+  position: relative;
 }
 
 .appRow {
@@ -199,4 +200,18 @@ h2 {
   background-color: lightslategray;
   border-radius: 5px;
   margin-left: 15px;
+}
+
+/* -------------------- END MESSAGE ELEMENT -------------------- */
+.endMsgFullDiv {
+  position: absolute;
+  z-index: 5;
+  background-color: rgba(200, 200, 200, 0.6);
+}
+
+.endMsgInside {
+  width: 33%;
+  height: 33%;
+  margin: auto;
+  background-color: skyblue;
 }

@@ -45,11 +45,11 @@ class ButtonSetUp extends Component {
       } = this.props,
       nextCard = deck.slice(-1)[0],
       newScore = players[livePlayer].Points + nextCard.Weight,
-      nextPlayer = newScore > 21 && livePlayer < players.length - 1 ? 1 : 0;
+      nextPlayer = newScore >= 21 && livePlayer < players.length - 1 ? 1 : 0;
 
     hitAction(deck.slice(), livePlayer, players.slice(), nextPlayer);
 
-    if (livePlayer === players.length - 1 && newScore > 21)
+    if (livePlayer === players.length - 1 && newScore >= 21)
       houseCardDraw(deck.slice(), house.slice());
   };
 

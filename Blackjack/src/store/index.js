@@ -175,10 +175,11 @@ export const houseCardDraw = (deck, house) => {
       while (houseHit(house)) {
         house.push(deck.pop());
       }
+      console.log("inside -", house);
       // const housePoints = calcTotalPoints(house)
       // if(housePoints > 21)
       dispatch(setHouse(house));
-      return alert("HOUSE!");
+      // return alert("HOUSE!");
     } catch (error) {
       console.error("WAH ERROR --", error);
     }

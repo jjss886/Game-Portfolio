@@ -55,5 +55,5 @@ export const houseHit = house => {
 };
 
 export const calcTotalPoints = hand => {
-  return hand.reduce((acm, val) => (acm += val.Points), 0);
+  return hand.reduce((acm, val) => (acm += val.Weight), 0);
 };
