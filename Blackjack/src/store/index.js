@@ -198,7 +198,10 @@ export const houseCardDraw = (deck, house, players) => {
         if (player.Points > 21) {
           player.Status = "Busted";
           player.Cash -= 10;
-          if (player.Cash <= 0) player.Status = "Out";
+          if (player.Cash <= 0) {
+            player.Cash = "Broke!";
+            player.Status = "Out";
+          }
         } else if (player.Points === 21) {
           player.Status = "Blackjack";
           player.Cash += 15;
@@ -208,7 +211,10 @@ export const houseCardDraw = (deck, house, players) => {
         } else if (player.Points <= housePoints) {
           player.Status = "Lost";
           player.Cash -= 10;
-          if (player.Cash <= 0) player.Status = "Out";
+          if (player.Cash <= 0) {
+            player.Cash = "Broke!";
+            player.Status = "Out";
+          }
         }
       });
       dispatch(setHouse(house, players));

@@ -10,7 +10,8 @@ class Tracker extends Component {
         {players.length ? (
           players.map((player, idx) => (
             <span key={idx} className="trackPlayer">
-              <strong>{player.Name}</strong>: {player.Cash}
+              <strong>{player.Name}</strong>: {!isNaN(player.Cash) ? "$" : null}
+              {player.Cash}
             </span>
           ))
         ) : (
