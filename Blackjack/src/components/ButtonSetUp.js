@@ -68,7 +68,7 @@ class ButtonSetUp extends Component {
   };
 
   render() {
-    const { liveGame } = this.props;
+    const { liveGame, liveRound } = this.props;
 
     return (
       <div className="btnSetUpDiv">
@@ -100,21 +100,25 @@ class ButtonSetUp extends Component {
           </>
         ) : (
           <>
-            <button
-              type="button"
-              onClick={this.hit}
-              className="hitBtn setUpBtn"
-            >
-              Hit
-            </button>
+            {liveRound ? (
+              <>
+                <button
+                  type="button"
+                  onClick={this.hit}
+                  className="hitBtn setUpBtn"
+                >
+                  Hit
+                </button>
 
-            <button
-              type="button"
-              onClick={this.stay}
-              className="stayBtn setUpBtn"
-            >
-              Stay
-            </button>
+                <button
+                  type="button"
+                  onClick={this.stay}
+                  className="stayBtn setUpBtn"
+                >
+                  Stay
+                </button>
+              </>
+            ) : null}
 
             <button
               type="button"
@@ -144,6 +148,7 @@ const mapState = state => {
     players: state.players,
     liveGame: state.liveGame,
     livePlayer: state.livePlayer,
+    liveRound: state.liveRound,
     house: state.house
   };
 };

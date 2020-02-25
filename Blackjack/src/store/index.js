@@ -10,6 +10,7 @@ const initialState = {
   house: [],
   players: [],
   livePlayer: -1,
+  liveRound: false,
   liveGame: false,
   houseDone: false
 };
@@ -54,7 +55,7 @@ export const reset = () => {
   };
 };
 
-export const hitCreator = (deck, players, points, livePlayer) => {
+export const hitCreator = (deck, players, livePlayer) => {
   return {
     type: HIT,
     deck,
@@ -171,7 +172,7 @@ export const hitAction = (deck, idx, players, nextPlayer) => {
       players[idx].Points = newPoints;
       if (newPoints > 21) players[idx].Cash -= 10;
 
-      dispatch(hitCreator(deck, players, newPoints, nextPlayer));
+      dispatch(hitCreator(deck, players, nextPlayer));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -185,8 +186,6 @@ export const houseCardDraw = (deck, house) => {
         house.push(deck.pop());
       }
       console.log("inside -", house);
-      // const housePoints = calcTotalPoints(house)
-      // if(housePoints > 21)
       dispatch(setHouse(house));
     } catch (error) {
       console.error("WAH ERROR --", error);
@@ -207,7 +206,8 @@ const reducer = (state = initialState, action) => {
         deck: action.deck,
         house: action.house,
         liveGame: !state.liveGame,
-        livePlayer: 0
+        livePlayer: 0,
+        liveRound: true
       };
     case HIT:
       return {
@@ -224,13 +224,15 @@ const reducer = (state = initialState, action) => {
         deck: action.deck,
         house: action.house,
         players: action.players,
-        livePlayer: 0
+        livePlayer: 0,
+        liveRound: true
       };
     case SET_HOUSE:
       return {
         ...state,
         house: action.house,
-        houseDone: true
+        houseDone: true,
+        liveRound: false
       };
     case SET_HOUSE_DONE:
       return {

@@ -4,12 +4,12 @@ import Card from "./Card";
 
 class House extends Component {
   render() {
-    const { deck, house, houseDone } = this.props;
+    const { house, liveRound } = this.props;
 
     return (
       <div className="houseFullDiv">
         {house.map((card, idx) => (
-          <Card key={idx} card={card} cover={idx === 0 && !houseDone} />
+          <Card key={idx} card={card} cover={idx === 0 && liveRound} />
         ))}
       </div>
     );
@@ -17,7 +17,7 @@ class House extends Component {
 }
 
 const mapState = state => {
-  return { deck: state.deck, house: state.house, houseDone: state.houseDone };
+  return { house: state.house, liveRound: state.liveRound };
 };
 
 const mapDispatch = dispatch => {
