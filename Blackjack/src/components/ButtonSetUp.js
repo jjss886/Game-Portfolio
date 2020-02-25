@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { maxPlayers } from "../utils/utilities";
 import {
   addPlayer,
   startGame,
@@ -13,6 +14,10 @@ import {
 class ButtonSetUp extends Component {
   newPlayer = () => {
     this.props.addPlayer();
+  };
+
+  maxPlayer = () => {
+    alert("Already max number of players !");
   };
 
   startGame = () => {
@@ -62,7 +67,7 @@ class ButtonSetUp extends Component {
       <div className="btnSetUpDiv">
         {!liveGame ? (
           <>
-            {players.length < 5 ? (
+            {players.length < maxPlayers ? (
               <button
                 type="button"
                 onClick={this.newPlayer}
@@ -71,7 +76,11 @@ class ButtonSetUp extends Component {
                 Add Player
               </button>
             ) : (
-              <button type="button" className="maxPlayerBtn setUpBtn">
+              <button
+                type="button"
+                onClick={this.maxPlayer}
+                className="maxPlayerBtn setUpBtn"
+              >
                 Max Players
               </button>
             )}
