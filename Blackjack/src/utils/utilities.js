@@ -1,4 +1,4 @@
-export const startCash = 25;
+export const startCash = 50;
 export const maxPlayers = 5;
 
 const suits = ["Spades", "Hearts", "Diamonds", "Clubs"],
