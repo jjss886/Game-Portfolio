@@ -8,14 +8,12 @@ const App = () => (
   <div className="appFullDiv">
     <EndMessage />
 
-    <div className="appRow appRowOne">
-      <Tracker />
-    </div>
+    <Table />
 
-    <div className="appRow appRowTwo">
-      <Table />
-
+    <div className="appRow ">
       <ButtonSetUp />
+
+      <Tracker />
     </div>
   </div>
 );

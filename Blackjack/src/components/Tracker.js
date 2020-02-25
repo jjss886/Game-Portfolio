@@ -7,6 +7,10 @@ class Tracker extends Component {
 
     return (
       <div className="trackerFullDiv">
+        <h3>Money Tracker!</h3>
+
+        <hr className="trackerHR" />
+
         {players.length ? (
           players.map((player, idx) => (
             <span key={idx} className="trackPlayer">
