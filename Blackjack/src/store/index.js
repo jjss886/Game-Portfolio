@@ -19,6 +19,7 @@ const SET_DECK = "SET_DECK";
 const ADD_PLAYER = "ADD_PLAYER";
 const SET_GAME = "SET_GAME";
 const SET_HOUSE = "SET_HOUSE";
+const SET_HOUSE_DONE = "SET_HOUSE_DONE";
 const NEW_ROUND = "NEW_ROUND";
 const RESET = "RESET";
 const HIT = "HIT";
@@ -84,6 +85,12 @@ export const setHouse = house => {
   };
 };
 
+export const setHouseDone = () => {
+  return {
+    type: SET_HOUSE_DONE
+  };
+};
+
 // THUNKY THUNKS
 export const setNewDeck = () => {
   return dispatch => {
@@ -118,6 +125,7 @@ export const newRound = players => {
             ID: idx + 1,
             Points: 0,
             Cash: val.Cash,
+            Status: false,
             Hand: new Array()
           });
           return acm;
@@ -143,6 +151,7 @@ export const addNewPlayer = () => {
           ID: idx,
           Points: 0,
           Cash: 100,
+          Status: false,
           Hand: new Array()
         })
       );
@@ -179,7 +188,6 @@ export const houseCardDraw = (deck, house) => {
       // const housePoints = calcTotalPoints(house)
       // if(housePoints > 21)
       dispatch(setHouse(house));
-      // return alert("HOUSE!");
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -223,6 +231,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         house: action.house,
         houseDone: true
+      };
+    case SET_HOUSE_DONE:
+      return {
+        ...state,
+        houseDone: false
       };
     case RESET:
       return initialState;
