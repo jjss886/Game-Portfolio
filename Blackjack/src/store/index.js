@@ -21,7 +21,6 @@ const initialState = {
 };
 
 // ACTION TYPES
-const SET_DECK = "SET_DECK";
 const ADD_PLAYER = "ADD_PLAYER";
 const SET_GAME = "SET_GAME";
 const SET_HOUSE = "SET_HOUSE";
@@ -32,12 +31,6 @@ const HIT = "HIT";
 const STAY = "STAY";
 
 // ACTION CREATORS
-export const setNewDeck = () => {
-  return {
-    type: SET_DECK,
-    deck: createDeck()
-  };
-};
 
 export const addPlayer = () => {
   const idx = store.getState().players.length + 1,
@@ -167,137 +160,9 @@ export const setHouseDone = () => {
   };
 };
 
-// THUNKY THUNKS
-// export const setNewDeck = () => {
-//   return dispatch => {
-//     try {
-//       dispatch(setDeck(createDeck()));
-//     } catch (error) {
-//       console.error("WAH ERROR --", error);
-//     }
-//   };
-// };
-
-// export const startNewGame = () => {
-//   return dispatch => {
-//     try {
-//       const deck = createDeck(),
-//         cardOne = deck.pop(),
-//         cardTwo = deck.pop(),
-//         house = [cardOne, cardTwo];
-//       dispatch(startGame(deck, house));
-//     } catch (error) {
-//       console.error("WAH ERROR --", error);
-//     }
-//   };
-// };
-
-// export const newRound = players => {
-//   return dispatch => {
-//     try {
-//       const resetPlayers = players.reduce((acm, val) => {
-//           if (val.Cash > 0) {
-//             acm.push({
-//               Name: `Player ${val.Name.split(" ")[1]}`,
-//               ID: val.ID,
-//               Points: 0,
-//               Cash: val.Cash,
-//               Status: false,
-//               Hand: new Array()
-//             });
-//           }
-//           return acm;
-//         }, []),
-//         deck = createDeck(),
-//         cardOne = deck.pop(),
-//         cardTwo = deck.pop(),
-//         house = [cardOne, cardTwo];
-//       // NEED TO REEVALUATE WHEN RESETPLAYERS IS BLANK !
-//       dispatch(newRoundCreator(resetPlayers, deck, house));
-//     } catch (error) {
-//       console.error("WAH ERROR --", error);
-//     }
-//   };
-// };
-
-// export const addNewPlayer = () => {
-//   return dispatch => {
-//     try {
-//       const idx = store.getState().players.length + 1;
-//       dispatch(
-//         addPlayer({
-//           Name: `Player ${idx}`,
-//           ID: idx,
-//           Points: 0,
-//           Cash: startCash,
-//           Status: false,
-//           Hand: new Array()
-//         })
-//       );
-//     } catch (error) {
-//       console.error("WAH ERROR --", error);
-//     }
-//   };
-// };
-
-// export const hitAction = (deck, idx, players, nextPlayer) => {
-//   return dispatch => {
-//     try {
-//       const card = deck.pop(),
-//         newPoints = players[idx].Points + card.Weight;
-
-//       players[idx].Hand.push(card);
-//       players[idx].Points = newPoints;
-
-//       dispatch(hitCreator(deck, players, nextPlayer));
-//     } catch (error) {
-//       console.error("WAH ERROR --", error);
-//     }
-//   };
-// };
-
-// export const houseCardDraw = (deck, house, players) => {
-//   return dispatch => {
-//     try {
-//       while (houseHit(house)) {
-//         house.push(deck.pop());
-//       }
-//       const housePoints = calcTotalPoints(house);
-//       players.forEach(player => {
-//         if (player.Points > 21) {
-//           player.Status = "Busted";
-//           player.Cash -= 10;
-//           if (player.Cash <= 0) {
-//             player.Cash = "Broke!";
-//             player.Status = "Out";
-//           }
-//         } else if (player.Points === 21) {
-//           player.Status = "Blackjack";
-//           player.Cash += 15;
-//         } else if (housePoints > 21 || player.Points > housePoints) {
-//           player.Status = "Won";
-//           player.Cash += 10;
-//         } else if (player.Points <= housePoints) {
-//           player.Status = "Lost";
-//           player.Cash -= 10;
-//           if (player.Cash <= 0) {
-//             player.Cash = "Broke!";
-//             player.Status = "Out";
-//           }
-//         }
-//       });
-//       dispatch(setHouse(house, players));
-//     } catch (error) {
-//       console.error("WAH ERROR --", error);
-//     }
-//   };
-// };
-
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_DECK:
-      return { ...state, deck: action.deck };
     case ADD_PLAYER:
       return { ...state, players: [...state.players, action.player] };
     case SET_GAME:

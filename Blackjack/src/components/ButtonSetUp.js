@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  setNewDeck,
   addPlayer,
   startGame,
   reset,
@@ -12,10 +11,6 @@ import {
 } from "../store";
 
 class ButtonSetUp extends Component {
-  newDeck = () => {
-    this.props.setNewDeck();
-  };
-
   newPlayer = () => {
     this.props.addPlayer();
   };
@@ -67,14 +62,6 @@ class ButtonSetUp extends Component {
       <div className="btnSetUpDiv">
         {!liveGame ? (
           <>
-            <button
-              type="button"
-              onClick={this.newDeck}
-              className="newDeckBtn setUpBtn"
-            >
-              New Deck
-            </button>
-
             <button
               type="button"
               onClick={this.newPlayer}
@@ -148,7 +135,6 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    setNewDeck: () => dispatch(setNewDeck()),
     addPlayer: () => dispatch(addPlayer()),
     startGame: () => dispatch(startGame()),
     reset: () => dispatch(reset()),
