@@ -36,7 +36,7 @@ class EndMessage extends Component {
               className="endMsgBtn"
               onClick={this.nextRound}
             >
-              Next Game
+              Next Round
             </button>
           </div>
         </div>
@@ -70,12 +70,12 @@ const MsgText = ({ player }) => {
       Blackjack: ["hit the Jackpot! NICE (+$15)", true],
       Won: ["beat the House! (+$10)", true],
       Busted: ["busted! HA (-$10)", false],
-      Lost: ["crumbled by the House! (-$10)", false],
+      Lost: ["crushed by the House! (-$10)", false],
       Out: ["is broke! BYE", false]
     };
 
   return (
-    <span className={`msgText msgText${msgObj[Status][0]}`}>
+    <span className={`msgText msgText${msgObj[Status][1]}`}>
       {Name} {msgObj[Status][0]}
     </span>
   );
