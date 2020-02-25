@@ -224,4 +224,13 @@ h2 {
   border-radius: 5px;
   padding: 10px;
   display: flex;
+  flex-direction: column;
+}
+
+.endMsgBtn {
+  height: 40px;
+  width: 150px;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: bold;
 }
