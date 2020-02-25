@@ -39,7 +39,17 @@ export const setNewDeck = () => {
   };
 };
 
-export const addPlayer = player => {
+export const addPlayer = () => {
+  const idx = store.getState().players.length + 1,
+    player = {
+      Name: `Player ${idx}`,
+      ID: idx,
+      Points: 0,
+      Cash: startCash,
+      Status: false,
+      Hand: new Array()
+    };
+
   return {
     type: ADD_PLAYER,
     player
@@ -80,10 +90,30 @@ export const stayCreator = () => {
   };
 };
 
-export const newRoundCreator = (players, deck, house) => {
+export const newRound = players => {
+  const resetPlayers = players.reduce((acm, val) => {
+      if (val.Cash > 0) {
+        acm.push({
+          Name: `Player ${val.Name.split(" ")[1]}`,
+          ID: val.ID,
+          Points: 0,
+          Cash: val.Cash,
+          Status: false,
+          Hand: new Array()
+        });
+      }
+      return acm;
+    }, []),
+    deck = createDeck(),
+    cardOne = deck.pop(),
+    cardTwo = deck.pop(),
+    house = [cardOne, cardTwo];
+
+  // NEED TO REEVALUATE WHEN RESETPLAYERS IS BLANK !
+
   return {
     type: NEW_ROUND,
-    players,
+    players: resetPlayers,
     deck,
     house
   };
@@ -128,53 +158,53 @@ export const setHouseDone = () => {
 //   };
 // };
 
-export const newRound = players => {
-  return dispatch => {
-    try {
-      const resetPlayers = players.reduce((acm, val) => {
-          if (val.Cash > 0) {
-            acm.push({
-              Name: `Player ${val.Name.split(" ")[1]}`,
-              ID: val.ID,
-              Points: 0,
-              Cash: val.Cash,
-              Status: false,
-              Hand: new Array()
-            });
-          }
-          return acm;
-        }, []),
-        deck = createDeck(),
-        cardOne = deck.pop(),
-        cardTwo = deck.pop(),
-        house = [cardOne, cardTwo];
-      // NEED TO REEVALUATE WHEN RESETPLAYERS IS BLANK !
-      dispatch(newRoundCreator(resetPlayers, deck, house));
-    } catch (error) {
-      console.error("WAH ERROR --", error);
-    }
-  };
-};
+// export const newRound = players => {
+//   return dispatch => {
+//     try {
+//       const resetPlayers = players.reduce((acm, val) => {
+//           if (val.Cash > 0) {
+//             acm.push({
+//               Name: `Player ${val.Name.split(" ")[1]}`,
+//               ID: val.ID,
+//               Points: 0,
+//               Cash: val.Cash,
+//               Status: false,
+//               Hand: new Array()
+//             });
+//           }
+//           return acm;
+//         }, []),
+//         deck = createDeck(),
+//         cardOne = deck.pop(),
+//         cardTwo = deck.pop(),
+//         house = [cardOne, cardTwo];
+//       // NEED TO REEVALUATE WHEN RESETPLAYERS IS BLANK !
+//       dispatch(newRoundCreator(resetPlayers, deck, house));
+//     } catch (error) {
+//       console.error("WAH ERROR --", error);
+//     }
+//   };
+// };
 
-export const addNewPlayer = () => {
-  return dispatch => {
-    try {
-      const idx = store.getState().players.length + 1;
-      dispatch(
-        addPlayer({
-          Name: `Player ${idx}`,
-          ID: idx,
-          Points: 0,
-          Cash: startCash,
-          Status: false,
-          Hand: new Array()
-        })
-      );
-    } catch (error) {
-      console.error("WAH ERROR --", error);
-    }
-  };
-};
+// export const addNewPlayer = () => {
+//   return dispatch => {
+//     try {
+//       const idx = store.getState().players.length + 1;
+//       dispatch(
+//         addPlayer({
+//           Name: `Player ${idx}`,
+//           ID: idx,
+//           Points: 0,
+//           Cash: startCash,
+//           Status: false,
+//           Hand: new Array()
+//         })
+//       );
+//     } catch (error) {
+//       console.error("WAH ERROR --", error);
+//     }
+//   };
+// };
 
 export const hitAction = (deck, idx, players, nextPlayer) => {
   return dispatch => {
