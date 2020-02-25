@@ -75,7 +75,13 @@ export const reset = () => {
   };
 };
 
-export const hitCreator = (deck, players, livePlayer) => {
+export const hit = (deck, idx, players, livePlayer) => {
+  const card = deck.pop(),
+    newPoints = players[idx].Points + card.Weight;
+
+  players[idx].Hand.push(card);
+  players[idx].Points = newPoints;
+
   return {
     type: HIT,
     deck,
@@ -84,7 +90,7 @@ export const hitCreator = (deck, players, livePlayer) => {
   };
 };
 
-export const stayCreator = () => {
+export const stay = () => {
   return {
     type: STAY
   };
@@ -119,7 +125,34 @@ export const newRound = players => {
   };
 };
 
-export const setHouse = (house, players) => {
+export const houseCardDraw = (deck, house, players) => {
+  while (houseHit(house)) {
+    house.push(deck.pop());
+  }
+  const housePoints = calcTotalPoints(house);
+  players.forEach(player => {
+    if (player.Points > 21) {
+      player.Status = "Busted";
+      player.Cash -= 10;
+      if (player.Cash <= 0) {
+        player.Cash = "Broke!";
+        player.Status = "Out";
+      }
+    } else if (player.Points === 21) {
+      player.Status = "Blackjack";
+      player.Cash += 15;
+    } else if (housePoints > 21 || player.Points > housePoints) {
+      player.Status = "Won";
+      player.Cash += 10;
+    } else if (player.Points <= housePoints) {
+      player.Status = "Lost";
+      player.Cash -= 10;
+      if (player.Cash <= 0) {
+        player.Cash = "Broke!";
+        player.Status = "Out";
+      }
+    }
+  });
   return {
     type: SET_HOUSE,
     house,
@@ -206,58 +239,58 @@ export const setHouseDone = () => {
 //   };
 // };
 
-export const hitAction = (deck, idx, players, nextPlayer) => {
-  return dispatch => {
-    try {
-      const card = deck.pop(),
-        newPoints = players[idx].Points + card.Weight;
+// export const hitAction = (deck, idx, players, nextPlayer) => {
+//   return dispatch => {
+//     try {
+//       const card = deck.pop(),
+//         newPoints = players[idx].Points + card.Weight;
 
-      players[idx].Hand.push(card);
-      players[idx].Points = newPoints;
+//       players[idx].Hand.push(card);
+//       players[idx].Points = newPoints;
 
-      dispatch(hitCreator(deck, players, nextPlayer));
-    } catch (error) {
-      console.error("WAH ERROR --", error);
-    }
-  };
-};
+//       dispatch(hitCreator(deck, players, nextPlayer));
+//     } catch (error) {
+//       console.error("WAH ERROR --", error);
+//     }
+//   };
+// };
 
-export const houseCardDraw = (deck, house, players) => {
-  return dispatch => {
-    try {
-      while (houseHit(house)) {
-        house.push(deck.pop());
-      }
-      const housePoints = calcTotalPoints(house);
-      players.forEach(player => {
-        if (player.Points > 21) {
-          player.Status = "Busted";
-          player.Cash -= 10;
-          if (player.Cash <= 0) {
-            player.Cash = "Broke!";
-            player.Status = "Out";
-          }
-        } else if (player.Points === 21) {
-          player.Status = "Blackjack";
-          player.Cash += 15;
-        } else if (housePoints > 21 || player.Points > housePoints) {
-          player.Status = "Won";
-          player.Cash += 10;
-        } else if (player.Points <= housePoints) {
-          player.Status = "Lost";
-          player.Cash -= 10;
-          if (player.Cash <= 0) {
-            player.Cash = "Broke!";
-            player.Status = "Out";
-          }
-        }
-      });
-      dispatch(setHouse(house, players));
-    } catch (error) {
-      console.error("WAH ERROR --", error);
-    }
-  };
-};
+// export const houseCardDraw = (deck, house, players) => {
+//   return dispatch => {
+//     try {
+//       while (houseHit(house)) {
+//         house.push(deck.pop());
+//       }
+//       const housePoints = calcTotalPoints(house);
+//       players.forEach(player => {
+//         if (player.Points > 21) {
+//           player.Status = "Busted";
+//           player.Cash -= 10;
+//           if (player.Cash <= 0) {
+//             player.Cash = "Broke!";
+//             player.Status = "Out";
+//           }
+//         } else if (player.Points === 21) {
+//           player.Status = "Blackjack";
+//           player.Cash += 15;
+//         } else if (housePoints > 21 || player.Points > housePoints) {
+//           player.Status = "Won";
+//           player.Cash += 10;
+//         } else if (player.Points <= housePoints) {
+//           player.Status = "Lost";
+//           player.Cash -= 10;
+//           if (player.Cash <= 0) {
+//             player.Cash = "Broke!";
+//             player.Status = "Out";
+//           }
+//         }
+//       });
+//       dispatch(setHouse(house, players));
+//     } catch (error) {
+//       console.error("WAH ERROR --", error);
+//     }
+//   };
+// };
 
 // REDUCER
 const reducer = (state = initialState, action) => {
