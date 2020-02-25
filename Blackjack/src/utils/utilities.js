@@ -1,3 +1,5 @@
+export const startCash = 25;
+
 const suits = ["Spades", "Hearts", "Diamonds", "Clubs"],
   values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 
@@ -28,6 +30,17 @@ const shuffleDeck = deck => {
   }
 };
 
+export const houseHit = house => {
+  if (calcTotalPoints(house) > 16) return false;
+  else return true;
+};
+
+export const calcTotalPoints = hand => {
+  return hand.reduce((acm, val) => (acm += val.Weight), 0);
+};
+
+// --------------------------- OLD --------------------------- //
+
 export const createPlayer = num => {
   const players = new Array();
 
@@ -47,13 +60,4 @@ export const win = players => {
   });
 
   return best[1] === -1 ? null : best[1];
-};
-
-export const houseHit = house => {
-  if (calcTotalPoints(house) > 16) return false;
-  else return true;
-};
-
-export const calcTotalPoints = hand => {
-  return hand.reduce((acm, val) => (acm += val.Weight), 0);
 };

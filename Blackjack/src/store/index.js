@@ -2,7 +2,12 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { createDeck, houseHit, calcTotalPoints } from "../utils/utilities";
+import {
+  createDeck,
+  houseHit,
+  calcTotalPoints,
+  startCash
+} from "../utils/utilities";
 
 // INITIAL STATE
 const initialState = {
@@ -122,20 +127,23 @@ export const newRound = players => {
   return dispatch => {
     try {
       const resetPlayers = players.reduce((acm, val) => {
-          acm.push({
-            Name: `Player ${val.Name.split(" ")[1]}`,
-            ID: val.ID,
-            Points: 0,
-            Cash: val.Cash,
-            Status: false,
-            Hand: new Array()
-          });
+          if (val.Cash > 0) {
+            acm.push({
+              Name: `Player ${val.Name.split(" ")[1]}`,
+              ID: val.ID,
+              Points: 0,
+              Cash: val.Cash,
+              Status: false,
+              Hand: new Array()
+            });
+          }
           return acm;
         }, []),
         deck = createDeck(),
         cardOne = deck.pop(),
         cardTwo = deck.pop(),
         house = [cardOne, cardTwo];
+      // NEED TO REEVALUATE WHEN RESETPLAYERS IS BLANK !
       dispatch(newRoundCreator(resetPlayers, deck, house));
     } catch (error) {
       console.error("WAH ERROR --", error);
@@ -152,7 +160,7 @@ export const addNewPlayer = () => {
           Name: `Player ${idx}`,
           ID: idx,
           Points: 0,
-          Cash: 100,
+          Cash: startCash,
           Status: false,
           Hand: new Array()
         })
@@ -171,7 +179,6 @@ export const hitAction = (deck, idx, players, nextPlayer) => {
 
       players[idx].Hand.push(card);
       players[idx].Points = newPoints;
-      // if (newPoints > 21) players[idx].Cash -= 10;
 
       dispatch(hitCreator(deck, players, nextPlayer));
     } catch (error) {
@@ -187,11 +194,11 @@ export const houseCardDraw = (deck, house, players) => {
         house.push(deck.pop());
       }
       const housePoints = calcTotalPoints(house);
-      players.forEach((player, idx) => {
+      players.forEach(player => {
         if (player.Points > 21) {
           player.Status = "Busted";
           player.Cash -= 10;
-          if (player.Cash <= 0) players.splice(idx, 1);
+          if (player.Cash <= 0) player.Status = "Out";
         } else if (player.Points === 21) {
           player.Status = "Blackjack";
           player.Cash += 15;
@@ -201,10 +208,9 @@ export const houseCardDraw = (deck, house, players) => {
         } else if (player.Points <= housePoints) {
           player.Status = "Lost";
           player.Cash -= 10;
-          if (player.Cash <= 0) players.splice(idx, 1);
+          if (player.Cash <= 0) player.Status = "Out";
         }
       });
-      console.log("inside -", house, players);
       dispatch(setHouse(house, players));
     } catch (error) {
       console.error("WAH ERROR --", error);

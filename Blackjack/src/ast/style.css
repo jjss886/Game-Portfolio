@@ -233,6 +233,8 @@ h3 {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .endMsgBtn {
@@ -245,7 +247,11 @@ h3 {
 }
 
 .msgTextDiv {
-  margin: 5px 0;
+  margin: 10px 0;
   display: flex;
   flex-direction: column;
+}
+
+.msgText {
+  margin-bottom: 3px;
 }

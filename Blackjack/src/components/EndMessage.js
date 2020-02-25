@@ -4,10 +4,7 @@ import { setHouseDone, newRound } from "../store";
 
 class EndMessage extends Component {
   closeMsg = () => {
-    const { setHouseDone, newRound, players } = this.props;
-
-    setHouseDone();
-    // newRound(players);
+    this.props.setHouseDone();
   };
 
   render() {
@@ -58,7 +55,8 @@ const MsgText = ({ player }) => {
       Busted: "busted! HA (-$10)",
       Blackjack: "hit the Jackpot! NICE (+$15)",
       Won: "beat the House! (+$10)",
-      Lost: "crumbled by the House! (-$10)"
+      Lost: "crumbled by the House! (-$10)",
+      Out: "is broke! BYE"
     };
 
   return (
