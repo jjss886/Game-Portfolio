@@ -79,10 +79,11 @@ export const newRoundCreator = (players, deck, house) => {
   };
 };
 
-export const setHouse = house => {
+export const setHouse = (house, players) => {
   return {
     type: SET_HOUSE,
-    house
+    house,
+    players
   };
 };
 
@@ -120,10 +121,10 @@ export const startNewGame = () => {
 export const newRound = players => {
   return dispatch => {
     try {
-      const resetPlayers = players.reduce((acm, val, idx) => {
+      const resetPlayers = players.reduce((acm, val) => {
           acm.push({
-            Name: `Player ${idx + 1}`,
-            ID: idx + 1,
+            Name: `Player ${val.Name.split(" ")[1]}`,
+            ID: val.ID,
             Points: 0,
             Cash: val.Cash,
             Status: false,
@@ -170,7 +171,7 @@ export const hitAction = (deck, idx, players, nextPlayer) => {
 
       players[idx].Hand.push(card);
       players[idx].Points = newPoints;
-      if (newPoints > 21) players[idx].Cash -= 10;
+      // if (newPoints > 21) players[idx].Cash -= 10;
 
       dispatch(hitCreator(deck, players, nextPlayer));
     } catch (error) {
@@ -179,14 +180,32 @@ export const hitAction = (deck, idx, players, nextPlayer) => {
   };
 };
 
-export const houseCardDraw = (deck, house) => {
+export const houseCardDraw = (deck, house, players) => {
   return dispatch => {
     try {
       while (houseHit(house)) {
         house.push(deck.pop());
       }
-      console.log("inside -", house);
-      dispatch(setHouse(house));
+      const housePoints = calcTotalPoints(house);
+      players.forEach((player, idx) => {
+        if (player.Points > 21) {
+          player.Status = "Busted";
+          player.Cash -= 10;
+          if (player.Cash <= 0) players.splice(idx, 1);
+        } else if (player.Points === 21) {
+          player.Status = "Blackjack";
+          player.Cash += 10;
+        } else if (housePoints > 21 || player.Points > housePoints) {
+          player.Status = "Won";
+          player.Cash += 10;
+        } else if (player.Points <= housePoints) {
+          player.Status = "Lost";
+          player.Cash -= 10;
+          if (player.Cash <= 0) players.splice(idx, 1);
+        }
+      });
+      console.log("inside -", house, players);
+      dispatch(setHouse(house, players));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -231,6 +250,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         house: action.house,
+        players: action.players,
         houseDone: true,
         liveRound: false
       };

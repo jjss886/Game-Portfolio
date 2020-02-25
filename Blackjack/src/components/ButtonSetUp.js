@@ -50,7 +50,7 @@ class ButtonSetUp extends Component {
     hitAction(deck.slice(), livePlayer, players.slice(), nextPlayer);
 
     if (livePlayer === players.length - 1 && newScore >= 21)
-      houseCardDraw(deck.slice(), house.slice());
+      houseCardDraw(deck.slice(), house.slice(), players.slice());
   };
 
   stay = () => {
@@ -63,7 +63,7 @@ class ButtonSetUp extends Component {
       deck
     } = this.props;
     if (livePlayer === players.length - 1)
-      houseCardDraw(deck.slice(), house.slice());
+      houseCardDraw(deck.slice(), house.slice(), players.slice());
     else stayCreator();
   };
 
@@ -163,7 +163,8 @@ const mapDispatch = dispatch => {
       dispatch(hitAction(deck, idx, players, nextPlayer)),
     stayCreator: () => dispatch(stayCreator()),
     newRound: players => dispatch(newRound(players)),
-    houseCardDraw: (deck, house) => dispatch(houseCardDraw(deck, house))
+    houseCardDraw: (deck, house, players) =>
+      dispatch(houseCardDraw(deck, house, players))
   };
 };
 
