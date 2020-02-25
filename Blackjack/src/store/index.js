@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
-import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
   createDeck,
@@ -190,7 +189,8 @@ const reducer = (state = initialState, action) => {
         house: action.house,
         players: action.players,
         livePlayer: 0,
-        liveRound: true
+        liveRound: true,
+        houseDone: false
       };
     case SET_HOUSE:
       return {
@@ -212,10 +212,10 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const middleware = composeWithDevTools(
-  // applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
-  applyMiddleware(thunkMiddleware)
-);
+const middleware = composeWithDevTools();
+// applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+// applyMiddleware(thunkMiddleware)
+// applyMiddleware(createLogger({ collapsed: true }));
 
 const store = createStore(reducer, middleware);
 

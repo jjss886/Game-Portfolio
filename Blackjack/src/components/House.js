@@ -20,8 +20,4 @@ const mapState = state => {
   return { house: state.house, liveRound: state.liveRound };
 };
 
-const mapDispatch = dispatch => {
-  return {};
-};
-
-export default connect(mapState, mapDispatch)(House);
+export default connect(mapState)(House);
