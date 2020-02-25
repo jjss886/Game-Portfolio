@@ -55,10 +55,10 @@ export default connect(mapState, mapDispatch)(EndMessage);
 const MsgText = ({ player }) => {
   const { Name, Status } = player,
     msgObj = {
-      Busted: "a",
-      Blackjack: "b",
-      Won: "c",
-      Lost: "d"
+      Busted: "busted! HA (-$10)",
+      Blackjack: "hit the Jackpot! NICE (+$15)",
+      Won: "beat the House! (+$10)",
+      Lost: "crumbled by the House! (-$10)"
     };
 
   return (

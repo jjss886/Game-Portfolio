@@ -194,7 +194,7 @@ export const houseCardDraw = (deck, house, players) => {
           if (player.Cash <= 0) players.splice(idx, 1);
         } else if (player.Points === 21) {
           player.Status = "Blackjack";
-          player.Cash += 10;
+          player.Cash += 15;
         } else if (housePoints > 21 || player.Points > housePoints) {
           player.Status = "Won";
           player.Cash += 10;
