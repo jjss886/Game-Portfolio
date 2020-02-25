@@ -7,7 +7,8 @@ import {
   reset,
   hitAction,
   stayCreator,
-  newRound
+  newRound,
+  houseCardDraw
 } from "../store";
 
 class ButtonSetUp extends Component {
@@ -34,19 +35,36 @@ class ButtonSetUp extends Component {
   };
 
   hit = () => {
-    const { deck, livePlayer, players, hitAction } = this.props,
+    const {
+        deck,
+        livePlayer,
+        players,
+        hitAction,
+        house,
+        houseCardDraw
+      } = this.props,
       nextCard = deck.slice(-1)[0],
       newScore = players[livePlayer].Points + nextCard.Weight,
       nextPlayer = newScore > 21 && livePlayer < players.length - 1 ? 1 : 0;
+
     hitAction(deck.slice(), livePlayer, players.slice(), nextPlayer);
+
     if (livePlayer === players.length - 1 && newScore > 21)
-      return alert("HOUSE TIME");
+      houseCardDraw(deck.slice(), house.slice());
   };
 
   stay = () => {
-    const { livePlayer, players, stayCreator } = this.props;
-    if (livePlayer === players.length - 1) return alert("HOUSE TIME");
-    stayCreator();
+    const {
+      livePlayer,
+      players,
+      stayCreator,
+      houseCardDraw,
+      house,
+      deck
+    } = this.props;
+    if (livePlayer === players.length - 1)
+      houseCardDraw(deck.slice(), house.slice());
+    else stayCreator();
   };
 
   render() {
@@ -125,7 +143,8 @@ const mapState = state => {
     deck: state.deck,
     players: state.players,
     liveGame: state.liveGame,
-    livePlayer: state.livePlayer
+    livePlayer: state.livePlayer,
+    house: state.house
   };
 };
 
@@ -138,7 +157,8 @@ const mapDispatch = dispatch => {
     hitAction: (deck, idx, players, nextPlayer) =>
       dispatch(hitAction(deck, idx, players, nextPlayer)),
     stayCreator: () => dispatch(stayCreator()),
-    newRound: players => dispatch(newRound(players))
+    newRound: players => dispatch(newRound(players)),
+    houseCardDraw: (deck, house) => dispatch(houseCardDraw(deck, house))
   };
 };
 

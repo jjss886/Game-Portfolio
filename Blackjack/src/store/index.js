@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { createDeck } from "../utils/utilities";
+import { createDeck, houseHit, calcTotalPoints } from "../utils/utilities";
 
 // INITIAL STATE
 const initialState = {
@@ -17,6 +17,7 @@ const initialState = {
 const SET_DECK = "SET_DECK";
 const ADD_PLAYER = "ADD_PLAYER";
 const SET_GAME = "SET_GAME";
+const SET_HOUSE = "SET_HOUSE";
 const NEW_ROUND = "NEW_ROUND";
 const RESET = "RESET";
 const HIT = "HIT";
@@ -71,6 +72,13 @@ export const newRoundCreator = (players, deck, house) => {
     type: NEW_ROUND,
     players,
     deck,
+    house
+  };
+};
+
+export const setHouse = house => {
+  return {
+    type: SET_HOUSE,
     house
   };
 };
@@ -160,9 +168,15 @@ export const hitAction = (deck, idx, players, nextPlayer) => {
   };
 };
 
-export const houseCardDraw = () => {
+export const houseCardDraw = (deck, house) => {
   return dispatch => {
     try {
+      while (houseHit(house)) {
+        house.push(deck.pop());
+      }
+      // const housePoints = calcTotalPoints(house)
+      // if(housePoints > 21)
+      dispatch(setHouse(house));
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -200,6 +214,11 @@ const reducer = (state = initialState, action) => {
         house: action.house,
         players: action.players,
         livePlayer: 0
+      };
+    case SET_HOUSE:
+      return {
+        ...state,
+        house: action.house
       };
     case RESET:
       return initialState;

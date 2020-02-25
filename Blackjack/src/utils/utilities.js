@@ -3,6 +3,7 @@ const suits = ["Spades", "Hearts", "Diamonds", "Clubs"],
 
 export const createDeck = () => {
   const deck = new Array();
+
   for (const val of values) {
     for (const suit of suits) {
       let weight = parseInt(val);
@@ -11,6 +12,7 @@ export const createDeck = () => {
       deck.push({ Value: val, Suit: suit, Weight: weight });
     }
   }
+
   shuffleDeck(deck);
   return deck;
 };
@@ -28,19 +30,30 @@ const shuffleDeck = deck => {
 
 export const createPlayer = num => {
   const players = new Array();
+
   for (let i = 1; i <= num; i++) {
     players.push({ Name: `Player ${i}`, ID: i, Points: 0, Hand: new Array() });
   }
+
   return players;
 };
 
 export const win = players => {
-  const best = [0, 0];
+  const best = [0, -1];
+
   players.forEach((player, idx) => {
     if (player.Points > best[0] && player.Points < 22)
       best = [player.Points, idx];
   });
-  return best[1];
+
+  return best[1] === -1 ? null : best[1];
 };
 
-export const houseRules = () => {};
+export const houseHit = house => {
+  if (calcTotalPoints(house) > 16) return false;
+  else return true;
+};
+
+export const calcTotalPoints = hand => {
+  return hand.reduce((acm, val) => (acm += val.Points), 0);
+};
