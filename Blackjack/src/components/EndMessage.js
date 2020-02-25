@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class Message extends Component {
+class EndMessage extends Component {
   render() {
     const { houseDone } = this.props;
 
     return houseDone ? (
-      <div className="messageFullDiv">
+      <div className="endMsgFullDiv">
         <div>Message</div>
       </div>
     ) : null;
@@ -17,4 +17,4 @@ const mapState = state => {
   return { house: state.house, houseDone: state.houseDone };
 };
 
-export default connect(mapState)(Message);
+export default connect(mapState)(EndMessage);

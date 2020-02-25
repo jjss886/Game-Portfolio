@@ -3,11 +3,11 @@ import Status from "./Status";
 import Tracker from "./Tracker";
 import Table from "./Table";
 import ButtonSetUp from "./ButtonSetUp";
-import Message from "./Message";
+import EndMessage from "./EndMessage";
 
 const App = () => (
   <div className="appFullDiv">
-    <Message />
+    <EndMessage />
 
     <div className="appRow appRowOne">
       <Status />
