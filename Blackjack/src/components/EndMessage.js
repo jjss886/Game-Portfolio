@@ -67,16 +67,16 @@ export default connect(mapState, mapDispatch)(EndMessage);
 const MsgText = ({ player }) => {
   const { Name, Status } = player,
     msgObj = {
-      Busted: "busted! HA (-$10)",
-      Blackjack: "hit the Jackpot! NICE (+$15)",
-      Won: "beat the House! (+$10)",
-      Lost: "crumbled by the House! (-$10)",
-      Out: "is broke! BYE"
+      Blackjack: ["hit the Jackpot! NICE (+$15)", true],
+      Won: ["beat the House! (+$10)", true],
+      Busted: ["busted! HA (-$10)", false],
+      Lost: ["crumbled by the House! (-$10)", false],
+      Out: ["is broke! BYE", false]
     };
 
   return (
-    <span className="msgText">
-      {Name} {msgObj[Status]}
+    <span className={`msgText msgText${msgObj[Status][0]}`}>
+      {Name} {msgObj[Status][0]}
     </span>
   );
 };
