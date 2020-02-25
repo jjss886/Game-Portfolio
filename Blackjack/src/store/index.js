@@ -153,6 +153,7 @@ export const houseCardDraw = (deck, house, players) => {
       }
     }
   });
+
   return {
     type: SET_HOUSE,
     house,
