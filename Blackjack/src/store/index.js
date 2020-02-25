@@ -10,7 +10,8 @@ const initialState = {
   house: [],
   players: [],
   livePlayer: -1,
-  liveGame: false
+  liveGame: false,
+  houseDone: false
 };
 
 // ACTION TYPES
@@ -177,6 +178,7 @@ export const houseCardDraw = (deck, house) => {
       // const housePoints = calcTotalPoints(house)
       // if(housePoints > 21)
       dispatch(setHouse(house));
+      return alert("HOUSE!");
     } catch (error) {
       console.error("WAH ERROR --", error);
     }
@@ -218,7 +220,8 @@ const reducer = (state = initialState, action) => {
     case SET_HOUSE:
       return {
         ...state,
-        house: action.house
+        house: action.house,
+        houseDone: true
       };
     case RESET:
       return initialState;

@@ -3,9 +3,12 @@ import Status from "./Status";
 import Tracker from "./Tracker";
 import Table from "./Table";
 import ButtonSetUp from "./ButtonSetUp";
+import Message from "./Message";
 
 const App = () => (
   <div className="appFullDiv">
+    <Message />
+
     <div className="appRow appRowOne">
       <Status />
 
