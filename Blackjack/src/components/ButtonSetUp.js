@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   setNewDeck,
   addNewPlayer,
-  startNewGame,
+  startGame,
   reset,
   hitAction,
   stayCreator,
@@ -22,7 +22,7 @@ class ButtonSetUp extends Component {
 
   startGame = () => {
     if (!this.props.players.length) return alert("Add Some Players First!");
-    this.props.startNewGame();
+    this.props.startGame();
   };
 
   setNewRound = () => {
@@ -157,7 +157,7 @@ const mapDispatch = dispatch => {
   return {
     setNewDeck: () => dispatch(setNewDeck()),
     addNewPlayer: () => dispatch(addNewPlayer()),
-    startNewGame: () => dispatch(startNewGame()),
+    startGame: () => dispatch(startGame()),
     reset: () => dispatch(reset()),
     hitAction: (deck, idx, players, nextPlayer) =>
       dispatch(hitAction(deck, idx, players, nextPlayer)),

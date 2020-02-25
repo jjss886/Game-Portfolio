@@ -32,21 +32,26 @@ const HIT = "HIT";
 const STAY = "STAY";
 
 // ACTION CREATORS
-const setDeck = deck => {
+export const setNewDeck = () => {
   return {
     type: SET_DECK,
-    deck
+    deck: createDeck()
   };
 };
 
-const addPlayer = player => {
+export const addPlayer = player => {
   return {
     type: ADD_PLAYER,
     player
   };
 };
 
-const startGame = (deck, house) => {
+export const startGame = () => {
+  const deck = createDeck(),
+    cardOne = deck.pop(),
+    cardTwo = deck.pop(),
+    house = [cardOne, cardTwo];
+
   return {
     type: SET_GAME,
     deck,
@@ -99,29 +104,29 @@ export const setHouseDone = () => {
 };
 
 // THUNKY THUNKS
-export const setNewDeck = () => {
-  return dispatch => {
-    try {
-      dispatch(setDeck(createDeck()));
-    } catch (error) {
-      console.error("WAH ERROR --", error);
-    }
-  };
-};
+// export const setNewDeck = () => {
+//   return dispatch => {
+//     try {
+//       dispatch(setDeck(createDeck()));
+//     } catch (error) {
+//       console.error("WAH ERROR --", error);
+//     }
+//   };
+// };
 
-export const startNewGame = () => {
-  return dispatch => {
-    try {
-      const deck = createDeck(),
-        cardOne = deck.pop(),
-        cardTwo = deck.pop(),
-        house = [cardOne, cardTwo];
-      dispatch(startGame(deck, house));
-    } catch (error) {
-      console.error("WAH ERROR --", error);
-    }
-  };
-};
+// export const startNewGame = () => {
+//   return dispatch => {
+//     try {
+//       const deck = createDeck(),
+//         cardOne = deck.pop(),
+//         cardTwo = deck.pop(),
+//         house = [cardOne, cardTwo];
+//       dispatch(startGame(deck, house));
+//     } catch (error) {
+//       console.error("WAH ERROR --", error);
+//     }
+//   };
+// };
 
 export const newRound = players => {
   return dispatch => {

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setHouseDone, newRound } from "../store";
+import { setHouseDone } from "../store";
 
 class EndMessage extends Component {
   closeMsg = () => {
     this.props.setHouseDone();
+  };
+
+  nextGame = () => {
+    console.log("NEXT GAME!");
   };
 
   render() {
@@ -21,9 +25,15 @@ class EndMessage extends Component {
             ))}
           </div>
 
-          <button type="button" className="endMsgBtn" onClick={this.closeMsg}>
-            Next Game
-          </button>
+          <div className="engMsgBtnDiv">
+            <button type="button" className="endMsgBtn" onClick={this.closeMsg}>
+              View Results
+            </button>
+
+            <button type="button" className="endMsgBtn" onClick={this.nextGame}>
+              Next Game
+            </button>
+          </div>
         </div>
       </div>
     ) : null;
@@ -40,8 +50,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    setHouseDone: () => dispatch(setHouseDone()),
-    newRound: players => dispatch(newRound(players))
+    setHouseDone: () => dispatch(setHouseDone())
   };
 };
 
