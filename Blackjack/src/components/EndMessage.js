@@ -18,9 +18,11 @@ class EndMessage extends Component {
         <div className="endMsgInside">
           <h3>End of Game</h3>
 
-          {players.map((player, idx) => (
-            <MsgText key={idx} player={player} />
-          ))}
+          <div className="msgTextDiv">
+            {players.map((player, idx) => (
+              <MsgText key={idx} player={player} />
+            ))}
+          </div>
 
           <button type="button" className="endMsgBtn" onClick={this.closeMsg}>
             Next Game
@@ -51,13 +53,17 @@ export default connect(mapState, mapDispatch)(EndMessage);
 // ---------------------- Message Text ---------------------- //
 
 const MsgText = ({ player }) => {
-  const { Name, Status } = player;
+  const { Name, Status } = player,
+    msgObj = {
+      Busted: "a",
+      Blackjack: "b",
+      Won: "c",
+      Lost: "d"
+    };
 
   return (
-    <div className="msgTextFullDiv">
-      <span>
-        {Name}: {Status}
-      </span>
-    </div>
+    <span className="msgText">
+      {Name} {msgObj[Status]}
+    </span>
   );
 };
