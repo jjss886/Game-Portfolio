@@ -56,19 +56,25 @@ class ButtonSetUp extends Component {
   };
 
   render() {
-    const { liveGame, liveRound } = this.props;
+    const { liveGame, liveRound, players } = this.props;
 
     return (
       <div className="btnSetUpDiv">
         {!liveGame ? (
           <>
-            <button
-              type="button"
-              onClick={this.newPlayer}
-              className="addPlayerBtn setUpBtn"
-            >
-              Add Player
-            </button>
+            {players.length < 5 ? (
+              <button
+                type="button"
+                onClick={this.newPlayer}
+                className="addPlayerBtn setUpBtn"
+              >
+                Add Player
+              </button>
+            ) : (
+              <button type="button" className="maxPlayerBtn setUpBtn">
+                Max Players
+              </button>
+            )}
 
             <button
               type="button"

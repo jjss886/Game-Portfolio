@@ -75,6 +75,10 @@ h3 {
   background-color: cornflowerblue;
 }
 
+.maxPlayerBtn {
+  background-color: violet;
+}
+
 .startGameBtn {
   background-color: darkcyan;
 }
