@@ -1,6 +1,6 @@
 # Blackjack
 
-Still in progress...please come back soon!
+Still in progress (adding in moving "Staying" button and Ace functionality)...please come back soon!
 
 **Tech Stack**: React, Redux
 
