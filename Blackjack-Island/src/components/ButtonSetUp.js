@@ -112,6 +112,14 @@ class ButtonSetUp extends Component {
                 >
                   Stay
                 </button>
+
+                <button
+                  type="button"
+                  onClick={this.stay}
+                  className="stayMoveBtn setUpBtn"
+                >
+                  Stay Move
+                </button>
               </>
             ) : null}
 
