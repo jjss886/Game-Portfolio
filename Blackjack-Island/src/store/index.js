@@ -16,7 +16,8 @@ const initialState = {
   livePlayer: -1,
   liveRound: false,
   liveGame: false,
-  houseDone: false
+  houseDone: false,
+  mode: "Easy"
 };
 
 // ACTION TYPES
@@ -28,6 +29,7 @@ const NEW_ROUND = "NEW_ROUND";
 const RESET = "RESET";
 const HIT = "HIT";
 const STAY = "STAY";
+const SET_MODE = "SET_MODE";
 
 // ACTION CREATORS
 
@@ -107,8 +109,6 @@ export const newRound = players => {
     cardTwo = deck.pop(),
     house = [cardOne, cardTwo];
 
-  // NEED TO REEVALUATE WHEN RESETPLAYERS IS BLANK !
-
   return {
     type: NEW_ROUND,
     players: resetPlayers,
@@ -156,6 +156,13 @@ export const houseCardDraw = (deck, house, players) => {
 export const setHouseDone = () => {
   return {
     type: SET_HOUSE_DONE
+  };
+};
+
+export const setMode = mode => {
+  return {
+    type: SET_MODE,
+    mode
   };
 };
 

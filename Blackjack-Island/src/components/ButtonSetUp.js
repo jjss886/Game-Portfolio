@@ -11,7 +11,20 @@ import {
   houseCardDraw
 } from "../store";
 
+const modes = {
+  Easy: 3,
+  Medium: 2,
+  Hard: 1
+};
+
 class ButtonSetUp extends Component {
+  constructor() {
+    super();
+    this.state = {
+      mode: "Easy"
+    };
+  }
+
   componentDidUpdate(prevProps) {
     const { liveRound } = this.props;
     if (liveRound && liveRound !== prevProps.liveRound) this.hitTimer();
@@ -102,6 +115,12 @@ class ButtonSetUp extends Component {
               </button>
             )}
 
+            <select className="selectMode">
+              {Object.keys(modes).map((mode, idx) => (
+                <option key={idx}>{mode}</option>
+              ))}
+            </select>
+
             <button
               type="button"
               onClick={this.startGame}
@@ -156,7 +175,8 @@ const mapState = state => {
     liveGame: state.liveGame,
     livePlayer: state.livePlayer,
     liveRound: state.liveRound,
-    house: state.house
+    house: state.house,
+    mode: state.mode
   };
 };
 
