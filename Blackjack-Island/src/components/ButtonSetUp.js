@@ -36,6 +36,7 @@ class ButtonSetUp extends Component {
   };
 
   resetGame = () => {
+    clearInterval(this.hitInterval);
     this.props.reset();
   };
 
