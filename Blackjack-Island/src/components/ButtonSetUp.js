@@ -30,6 +30,11 @@ class ButtonSetUp extends Component {
     if (liveRound && liveRound !== prevProps.liveRound) this.hitTimer();
   }
 
+  handleModeChange = evt => {
+    const mode = evt.target.value;
+    this.setState({ mode });
+  };
+
   newPlayer = () => {
     this.props.addPlayer();
   };
@@ -40,7 +45,7 @@ class ButtonSetUp extends Component {
 
   startGame = () => {
     if (!this.props.players.length) return alert("Add Some Players First!");
-    this.props.startGame();
+    this.props.startGame(this.state.mode);
   };
 
   setNewRound = () => {
@@ -115,7 +120,11 @@ class ButtonSetUp extends Component {
               </button>
             )}
 
-            <select className="selectMode">
+            <select
+              className="selectMode"
+              value={this.state.mode}
+              onChange={this.handleModeChange}
+            >
               {Object.keys(modes).map((mode, idx) => (
                 <option key={idx}>{mode}</option>
               ))}

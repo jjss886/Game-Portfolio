@@ -50,16 +50,19 @@ export const addPlayer = () => {
   };
 };
 
-export const startGame = () => {
+export const startGame = mode => {
   const deck = createDeck(),
     cardOne = deck.pop(),
     cardTwo = deck.pop(),
     house = [cardOne, cardTwo];
 
+  console.log("start -", mode);
+
   return {
     type: SET_GAME,
     deck,
-    house
+    house,
+    mode
   };
 };
 
@@ -178,7 +181,8 @@ const reducer = (state = initialState, action) => {
         house: action.house,
         liveGame: !state.liveGame,
         livePlayer: 0,
-        liveRound: true
+        liveRound: true,
+        mode: action.mode
       };
     case HIT:
       return {
