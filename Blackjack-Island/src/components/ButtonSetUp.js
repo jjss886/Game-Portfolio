@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { maxPlayers } from "../utils/utilities";
+import { maxPlayers, hitSpeed } from "../utils/utilities";
 import {
   addPlayer,
   startGame,
@@ -37,7 +37,7 @@ class ButtonSetUp extends Component {
   };
 
   hitTimer = () => {
-    this.hitInterval = setInterval(this.hit, 2000);
+    this.hitInterval = setInterval(this.hit, hitSpeed * 1000);
   };
 
   hit = () => {
