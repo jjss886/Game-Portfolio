@@ -113,14 +113,13 @@ class ButtonSetUp extends Component {
           <>
             {liveRound ? (
               <>
-                <button
+                {/* <button
                   type="button"
                   onClick={this.hit}
-                  // onClick={this.hitTimer()}
                   className="hitBtn setUpBtn"
                 >
                   Hit
-                </button>
+                </button> */}
 
                 {/* <button
                   type="button"
@@ -133,7 +132,7 @@ class ButtonSetUp extends Component {
                 <button
                   type="button"
                   onClick={this.stay}
-                  style={{ top: this.calcPos(400), left: this.calcPos(700) }}
+                  style={{ top: this.calcPos(400), left: this.calcPos(800) }}
                   className="stayMoveBtn setUpBtn"
                 >
                   Stay Move
