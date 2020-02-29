@@ -60,6 +60,10 @@ class ButtonSetUp extends Component {
     else stay();
   };
 
+  calcPos = () => {
+    return Math.random();
+  };
+
   render() {
     const { liveGame, liveRound, players } = this.props;
 
@@ -116,6 +120,7 @@ class ButtonSetUp extends Component {
                 <button
                   type="button"
                   onClick={this.stay}
+                  style={{ top: this.calcPos(), left: this.calcPos() }}
                   className="stayMoveBtn setUpBtn"
                 >
                   Stay Move

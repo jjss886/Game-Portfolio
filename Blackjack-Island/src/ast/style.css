@@ -97,6 +97,7 @@ h3 {
 
 .stayMoveBtn {
   background-color: aqua;
+  position: absolute;
 }
 
 /* -------------------- CARD ELEMENT -------------------- */
