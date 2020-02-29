@@ -23,18 +23,25 @@ class ButtonSetUp extends Component {
   startGame = () => {
     if (!this.props.players.length) return alert("Add Some Players First!");
     this.props.startGame();
+    this.hitTimer();
   };
 
   setNewRound = () => {
     const { players, newRound } = this.props;
     newRound(players);
+    this.hitTimer();
   };
 
   resetGame = () => {
     this.props.reset();
   };
 
+  hitTimer = () => {
+    this.hitInterval = setInterval(this.hit, 2000);
+  };
+
   hit = () => {
+    console.log("HOLA!");
     const { deck, livePlayer, players, hit, house, houseCardDraw } = this.props,
       nextCard = deck.slice(-1)[0],
       newScore = players[livePlayer].Points + nextCard.Weight,
@@ -42,8 +49,11 @@ class ButtonSetUp extends Component {
 
     hit(deck.slice(), livePlayer, players.slice(), nextPlayer);
 
-    if (livePlayer === players.length - 1 && newScore >= 21)
+    if (livePlayer === players.length - 1 && newScore >= 21) {
+      console.log("HUH");
+      clearInterval(this.hitInterval);
       houseCardDraw(deck.slice(), house.slice(), players.slice());
+    }
   };
 
   stay = () => {
@@ -55,9 +65,11 @@ class ButtonSetUp extends Component {
       house,
       deck
     } = this.props;
-    if (livePlayer === players.length - 1)
+    if (livePlayer === players.length - 1) {
+      console.log("HUH");
+      clearInterval(this.hitInterval);
       houseCardDraw(deck.slice(), house.slice(), players.slice());
-    else stay();
+    } else stay();
   };
 
   calcPos = num => {
@@ -104,6 +116,7 @@ class ButtonSetUp extends Component {
                 <button
                   type="button"
                   onClick={this.hit}
+                  // onClick={this.hitTimer()}
                   className="hitBtn setUpBtn"
                 >
                   Hit
