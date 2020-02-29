@@ -8,12 +8,20 @@ const App = () => (
   <div className="appFullDiv">
     <EndMessage />
 
-    <Table />
+    <h2 className="appHeader">
+      Welcome to Blackjack Island, where you're constantly{" "}
+      <span className="appHit">Hitting</span> and{" "}
+      <span className="appStay">Staying</span> is constantly moving!
+    </h2>
 
-    <div className="appRow ">
-      <ButtonSetUp />
+    <div className="appRow">
+      <Table />
 
-      <Tracker />
+      <div className="appCol">
+        <ButtonSetUp />
+
+        <Tracker />
+      </div>
     </div>
   </div>
 );

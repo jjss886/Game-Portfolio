@@ -13,7 +13,7 @@ h3 {
   padding: 15px;
   border-radius: 10px;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   width: 80vw;
   min-width: 550px;
   position: relative;
@@ -21,7 +21,25 @@ h3 {
   margin-top: 30px;
 }
 
+.appHeader {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.appHit {
+  color: blue;
+}
+
+.appStay {
+  color: purple;
+}
+
 .appRow {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.appCol {
   display: flex;
   flex-direction: column;
 }
