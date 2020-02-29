@@ -99,6 +99,8 @@ h3 {
   background-color: aqua;
   position: absolute;
   z-index: 20;
+  border-width: 3px;
+  border-color: black;
 }
 
 /* -------------------- CARD ELEMENT -------------------- */
