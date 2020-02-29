@@ -12,6 +12,17 @@ import {
 } from "../store";
 
 class ButtonSetUp extends Component {
+  // componentDidMount() {
+  //   console.log("mounting -", this.props.liveRound);
+  //   if (this.props.liveRound) this.hitTimer();
+  // }
+
+  componentDidUpdate(prevProps) {
+    const { liveRound } = this.props;
+    console.log("update 1 -", liveRound);
+    if (liveRound && liveRound !== prevProps.liveRound) this.hitTimer();
+  }
+
   newPlayer = () => {
     this.props.addPlayer();
   };
@@ -23,13 +34,13 @@ class ButtonSetUp extends Component {
   startGame = () => {
     if (!this.props.players.length) return alert("Add Some Players First!");
     this.props.startGame();
-    this.hitTimer();
+    // this.hitTimer();
   };
 
   setNewRound = () => {
     const { players, newRound } = this.props;
     newRound(players);
-    this.hitTimer();
+    // this.hitTimer();
   };
 
   resetGame = () => {
