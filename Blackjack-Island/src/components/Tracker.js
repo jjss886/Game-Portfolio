@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 
 class Tracker extends Component {
   render() {
-    const { players } = this.props;
+    const { players, mode } = this.props;
 
     return (
       <div className="trackerFullDiv">
+        <hr className="trackerHR" />
+
         <h3>Money Tracker!</h3>
 
         <hr className="trackerHR" />
@@ -28,7 +30,8 @@ class Tracker extends Component {
 
 const mapState = state => {
   return {
-    players: state.players
+    players: state.players,
+    mode: state.mode
   };
 };
 
