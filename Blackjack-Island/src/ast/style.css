@@ -22,7 +22,7 @@ h3 {
 }
 
 .appHeader {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -119,6 +119,7 @@ h3 {
   z-index: 20;
   border-width: 3px;
   border-color: black;
+  border-style: dashed;
 }
 
 /* -------------------- CARD ELEMENT -------------------- */

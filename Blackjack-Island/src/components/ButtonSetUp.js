@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { maxPlayers, hitSpeed } from "../utils/utilities";
+import { maxPlayers, hitSpeed, checkLivePlayers } from "../utils/utilities";
 import {
   addPlayer,
   startGame,
@@ -114,22 +114,6 @@ class ButtonSetUp extends Component {
           <>
             {liveRound ? (
               <>
-                {/* <button
-                  type="button"
-                  onClick={this.hit}
-                  className="hitBtn setUpBtn"
-                >
-                  Hit
-                </button> */}
-
-                {/* <button
-                  type="button"
-                  onClick={this.stay}
-                  className="stayBtn setUpBtn"
-                >
-                  Stay
-                </button> */}
-
                 <button
                   type="button"
                   onClick={this.stay}
@@ -141,13 +125,15 @@ class ButtonSetUp extends Component {
               </>
             ) : null}
 
-            <button
-              type="button"
-              onClick={this.setNewRound}
-              className="newRoundBtn setUpBtn"
-            >
-              New Round
-            </button>
+            {checkLivePlayers(players) ? (
+              <button
+                type="button"
+                onClick={this.setNewRound}
+                className="newRoundBtn setUpBtn"
+              >
+                New Round
+              </button>
+            ) : null}
 
             <button
               type="button"

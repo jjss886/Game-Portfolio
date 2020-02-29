@@ -1,6 +1,6 @@
-export const startCash = 50;
+export const startCash = 15;
 export const maxPlayers = 5;
-export const hitSpeed = 2;
+export const hitSpeed = 1;
 
 const suits = ["Spades", "Hearts", "Diamonds", "Clubs"],
   values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
@@ -39,6 +39,10 @@ export const houseHit = house => {
 
 export const calcTotalPoints = hand => {
   return hand.reduce((acm, val) => (acm += val.Weight), 0);
+};
+
+export const checkLivePlayers = players => {
+  return players.filter(player => player.Cash !== "Broke!").length;
 };
 
 // --------------------------- OLD --------------------------- //

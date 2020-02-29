@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setHouseDone, newRound } from "../store";
+import { checkLivePlayers } from "../utils/utilities";
 
 class EndMessage extends Component {
   closeMsg = () => {
@@ -31,13 +32,15 @@ class EndMessage extends Component {
               View Results
             </button>
 
-            <button
-              type="button"
-              className="endMsgBtn"
-              onClick={this.nextRound}
-            >
-              Next Round
-            </button>
+            {checkLivePlayers(players) ? (
+              <button
+                type="button"
+                className="endMsgBtn"
+                onClick={this.nextRound}
+              >
+                Next Round
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
