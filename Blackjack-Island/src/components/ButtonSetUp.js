@@ -60,8 +60,8 @@ class ButtonSetUp extends Component {
     else stay();
   };
 
-  calcPos = () => {
-    return Math.random();
+  calcPos = num => {
+    return Math.floor(Math.random() * num);
   };
 
   render() {
@@ -109,18 +109,18 @@ class ButtonSetUp extends Component {
                   Hit
                 </button>
 
-                <button
+                {/* <button
                   type="button"
                   onClick={this.stay}
                   className="stayBtn setUpBtn"
                 >
                   Stay
-                </button>
+                </button> */}
 
                 <button
                   type="button"
                   onClick={this.stay}
-                  style={{ top: this.calcPos(), left: this.calcPos() }}
+                  style={{ top: this.calcPos(400), left: this.calcPos(700) }}
                   className="stayMoveBtn setUpBtn"
                 >
                   Stay Move
