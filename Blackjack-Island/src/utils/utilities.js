@@ -1,6 +1,11 @@
 export const startCash = 50;
 export const maxPlayers = 5;
-export const hitSpeed = 2;
+export const modes = {
+  Easy: 3,
+  Medium: 2,
+  Hard: 1.5,
+  Outrageous: 1
+};
 
 const suits = ["Spades", "Hearts", "Diamonds", "Clubs"],
   values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];

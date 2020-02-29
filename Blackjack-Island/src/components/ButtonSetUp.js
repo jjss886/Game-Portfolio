@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { maxPlayers, hitSpeed, checkLivePlayers } from "../utils/utilities";
+import { maxPlayers, modes, checkLivePlayers } from "../utils/utilities";
 import {
   addPlayer,
   startGame,
@@ -10,12 +10,6 @@ import {
   newRound,
   houseCardDraw
 } from "../store";
-
-const modes = {
-  Easy: 3,
-  Medium: 2,
-  Hard: 1
-};
 
 class ButtonSetUp extends Component {
   constructor() {
@@ -59,7 +53,8 @@ class ButtonSetUp extends Component {
   };
 
   hitTimer = () => {
-    this.hitInterval = setInterval(this.hit, hitSpeed * 1000);
+    const { mode } = this.props;
+    this.hitInterval = setInterval(this.hit, modes[mode] * 1000);
   };
 
   hit = () => {
@@ -157,9 +152,9 @@ class ButtonSetUp extends Component {
               <button
                 type="button"
                 onClick={this.setNewRound}
-                className="newRoundBtn setUpBtn"
+                className="nextRoundBtn setUpBtn"
               >
-                New Round
+                Next Round
               </button>
             ) : null}
 
@@ -192,7 +187,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     addPlayer: () => dispatch(addPlayer()),
-    startGame: () => dispatch(startGame()),
+    startGame: mode => dispatch(startGame(mode)),
     reset: () => dispatch(reset()),
     hit: (deck, idx, players, nextPlayer) =>
       dispatch(hit(deck, idx, players, nextPlayer)),

@@ -56,8 +56,6 @@ export const startGame = mode => {
     cardTwo = deck.pop(),
     house = [cardOne, cardTwo];
 
-  console.log("start -", mode);
-
   return {
     type: SET_GAME,
     deck,
