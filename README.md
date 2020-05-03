@@ -12,10 +12,8 @@ Master Git Repo to house various game applications! Each game typically represen
    [EXPLORE](https://tic-tac-thrones.herokuapp.com/)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    [REPO](https://github.com/jjss886/Tic-Tac-Thrones)
 
-| Game    | Deploy | Repo | #3  | #4  | #5  | #6  | #7  | #8  | #9  | #10 | #11 |
-| ------- | ------ | ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Seconds | 301    | 283  | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269 |
-| ------- | ---    | ---  | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Seconds | 301    | 283  | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269 |
-| ------- | ---    | ---  | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Seconds | 301    | 283  | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269 |
+| Game                 | Deployed Link                                            | Github Repo Link                                    |
+| -------------------- | -------------------------------------------------------- | --------------------------------------------------- |
+| **Blackjack-Island** | [Explore](https://blackjack-island-react.herokuapp.com/) | [Repo](https://github.com/jjss886/Blackjack-Island) |
+| **Space-Tetris**     | [Explore](https://space-tetris-react.herokuapp.com/)     | [Repo](https://github.com/jjss886/Space-Tetris)     |
+| **Tic-Tac-Thrones**  | [Explore](https://tic-tac-thrones.herokuapp.com/)        | [Repo](https://github.com/jjss886/Tic-Tac-Thrones)  |
